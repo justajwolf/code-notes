@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/changbaihe/study/issues"
   },
-  "homepage": "https://github.com/changbaihe/study#readme"
+  "homepage": "https://github.com/changbaihe/study#readme",
+  "dependencies": {
+    "protocol-buffers": "^4.1.1"
+  }
 }
