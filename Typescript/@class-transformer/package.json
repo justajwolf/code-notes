@@ -1,0 +1,16 @@
+{
+  "name": "class-transformer-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cbh",
+  "license": "ISC",
+  "dependencies": {
+    "class-transformer": "^0.2.3",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.0.0"
+  }
+}

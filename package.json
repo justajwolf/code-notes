@@ -1,22 +1,7 @@
 {
-  "name": "study",
-  "version": "1.0.0",
-  "description": "",
-  "main": "Javascript/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/changbaihe/study.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/changbaihe/study/issues"
-  },
-  "homepage": "https://github.com/changbaihe/study#readme",
   "dependencies": {
-    "protocol-buffers": "^4.1.1"
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.5"
   }
 }
