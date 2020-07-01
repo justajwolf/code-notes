@@ -5,9 +5,16 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+            "name": "py-debug-single",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole"
+        },
+		{
 			"type": "node",
 			"request": "launch",
-			"name": "debug-single-ts",
+			"name": "ts-debug-single",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
