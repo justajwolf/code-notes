@@ -12,13 +12,14 @@
 				"<node_internals>/**"
 			],
 			"env": {
-				"TS_NODE_PROJECT": "${fileDirname}/tsconfig.json"
+				"TS_NODE_PROJECT": "tsconfig.json"
 			},
 			"runtimeArgs": [
 				"--inspect-brk",
 				"-r",
 				"ts-node/register"
 			],
+			"cwd": "${fileDirname}",
 			"args": ["${file}"],
 			"console": "internalConsole",
 			"outputCapture": "std",

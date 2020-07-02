@@ -1,7 +1,9 @@
 import * as socketio from 'socket.io';
 import * as http from 'http';
 const server = http.createServer();
-console.log(typeof server)
+server.on('request', (req, res) =>{
+    res.end(req.url);
+})
 const io = socketio(server);
 io.on('connection', socket => {
     socket.join(socket.id);
