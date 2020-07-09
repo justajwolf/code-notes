@@ -1,5 +1,5 @@
 {
-  "extends": "../typescript/tsconfig.base.json",
+  "extends": "../../typescript/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist"
