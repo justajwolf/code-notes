@@ -1,5 +1,5 @@
 let queue: Promise<any> = Promise.resolve(0);
-const task = async (i: number) => {
+export const task = async (i: number) => {
   queue = queue.then((res) => {
     console.log(`这是第${res}个结果`)
     return new Promise((resolve) => {
@@ -10,13 +10,25 @@ const task = async (i: number) => {
   return queue;
 }
 
-(() => {
+const asyncTask = async (fn) => fn(); 
+function test1() {
   const tasks = [];
   for(let i=1; i<=10; i++) {
-    task(i).then(i => console.log(i));
+    asyncTask(() => task(i).then(i => console.log(i)));
     // tasks.push(task(i));
   }
   // Promise.all(tasks).then(list => {
   //   list.forEach(i => console.log(i));
   // });
-})()
+}
+// test1();
+
+function test2() {
+  const tasks = [];
+  const p = task(1);
+  asyncTask(() => p.then(i => console.log(i)));
+  asyncTask(async () => {
+    console.log(`async: ${await p}`);
+  })
+}
+// test2();
