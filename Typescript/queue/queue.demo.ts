@@ -5,7 +5,7 @@ export const task = async (i: number) => {
     return new Promise((resolve) => {
       console.log(`创建第${i}个Promise`);
       setTimeout(() => resolve(i), 500);
-    });
+    }).catch((err) => console.log(`err: ${err}`));
   })
   return queue;
 }
@@ -32,3 +32,27 @@ function test2() {
   })
 }
 // test2();
+
+// (Promise.resolve() as Promise<any>)
+// .then(() => {
+//   console.log('first')
+//   // return 'ok'
+//   throw new Error('1')
+// }).then((...a) => {
+//   console.log('second')
+//   console.log(a);
+// })
+
+class RoomContainerRegistry extends Map<string, string> {
+  get(k: any) {
+    return super.get(`${k}`);
+  }
+  set(k: any, v: string) {
+    return super.set(`${k}`, v);
+  }
+}
+
+let a = new RoomContainerRegistry();
+a.set(1, '20');
+a.set(2, '50');
+console.log([...a.keys()], a.get(1), a.get(2))
