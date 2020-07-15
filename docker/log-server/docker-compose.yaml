@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+  log:
+    container_name: logger
+    image: log:latest
+    ports: 
+      - 8080:3000
+    
+  mysql-5.7:
+    container_name: mysql
+    image: mysql:5.7.30
+    restart: always
+    ports: 
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    
+  redis:
+    container_name: redis-latest
+    image: redis:latest
+    restart: always
+    ports: 
+      - 6379:6379
+    expose: 
+      - 6379
+    volumes:
+      - /d/docker/redis/redis.conf:/etc/redis/redis.conf
+      - /d/docker/redis/data:/data
+    entrypoint: redis-server --appendonly yes
