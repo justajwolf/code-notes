@@ -1,1 +1,17 @@
-version: '3.8'
+version: '3.7'
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.8.0
+    container_name: kibana
+    hostname: kibana.cn
+    ports:
+      - 5601:5601
+    environment:
+      MONITORING_ENABLED: 'false'
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    networks: 
+      - default
+networks:
+  default:
+    external:
+      name: elastic
