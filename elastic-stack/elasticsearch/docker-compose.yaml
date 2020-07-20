@@ -1,8 +1,9 @@
-version: '3.8'
+version: '3.7'
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: es01
+    hostname: es.cn
     environment:
       - node.name=es01
       - cluster.name=es-docker-cluster
@@ -11,7 +12,6 @@ services:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
-      nofile: 
       memlock:
         soft: -1
         hard: -1
@@ -20,7 +20,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      - elastic
+      - default
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: es02
@@ -38,7 +38,7 @@ services:
     volumes:
       - data02:/usr/share/elasticsearch/data
     networks:
-      - elastic
+      - default
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: es03
@@ -56,8 +56,7 @@ services:
     volumes:
       - data03:/usr/share/elasticsearch/data
     networks:
-      - elastic
-
+      - default
 volumes:
   data01:
     driver: local
@@ -67,5 +66,6 @@ volumes:
     driver: local
 
 networks:
-  elastic:
-    driver: bridge
+  default:
+    external:
+      name: elastic
