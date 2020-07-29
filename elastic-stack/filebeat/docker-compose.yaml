@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.8.0
+    container_name: filebeat
+    hostname: filebeat.cn
+    user: root
+    environment:
+      ELASTICSEARCH_HOST: es01:9200
+      KIBANA_HOST: kibana:5601
+    command: ["--strict.perms=false"]
+    networks: 
+      - elastic
+    volumes:
+      - /c/docker/elastic-stack/filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml
+      - /c/docker/elastic-stack/filebeat/logs:/usr/share/filebeat/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+networks:
+  elastic:
+    external:
+      name: elastic
