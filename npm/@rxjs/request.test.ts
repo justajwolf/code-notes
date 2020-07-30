@@ -1,24 +1,33 @@
 import Axios from 'axios';
-import { from, of, merge, concat, empty } from 'rxjs';
+import { from, of, merge, concat, empty, Observable } from 'rxjs';
 import { catchError, map, tap, mergeMap, mergeMapTo, concatMap, concatAll } from 'rxjs/operators';
 
 const post = () => from(Axios.post('http://localhost:3000', {}, { timeout: 2000 }));
-const task = () => {
-  return of(1).pipe(
+const log = (request: Observable<any>) => {
+  return (source: Observable<any>): Observable<any> => source.pipe(
     tap(() => {
       console.log('request start');
     }),
-    map(x => post().pipe(map(res => res.data))),
+    map(() => request),
     concatAll(),
-    catchError((e) => of(e)),
+    catchError((e) => {
+      console.log('response end', e.message);
+      throw e;
+    }),
     tap(data => {
-      if (data instanceof Error) {
-        return console.log('response end', data.message);
-      }
       console.log('response end', data);
     }),
-    map(x => x instanceof Error ? null : x),
-  ).toPromise();
+  )
+}
+const task = () => {
+  return of(1)
+  .pipe(
+    log(
+      post().pipe(map(res => res.data))
+    )
+  )
+  .pipe(catchError((e) => of(null)))
+  .toPromise()
 }
 
 (async () => {
