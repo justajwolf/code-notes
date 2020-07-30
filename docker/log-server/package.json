@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "start": "node ./dist/src",
+    "start": "gulp && node ./dist/src",
     "d:image": "docker build . -t log:latest",
     "d:start": "npm run d:image && docker-compose up -d log",
     "d:logs": "docker logs -f logger"
