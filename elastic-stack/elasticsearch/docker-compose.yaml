@@ -19,6 +19,7 @@ services:
       - data01:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+      - 9300:9300
     networks:
       - default
   es02:
