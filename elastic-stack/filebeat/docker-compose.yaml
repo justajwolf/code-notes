@@ -12,7 +12,7 @@ services:
     networks: 
       - elastic
     volumes:
-      - /c/docker/elastic-stack/filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml
+      - /c/docker/elastic-stack/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - /c/docker/elastic-stack/filebeat/logs:/usr/share/filebeat/logs
       - /var/lib/docker/containers:/var/lib/docker/containers
       - /var/run/docker.sock:/var/run/docker.sock
