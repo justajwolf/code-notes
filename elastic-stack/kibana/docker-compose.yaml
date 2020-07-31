@@ -8,7 +8,7 @@ services:
       - 5601:5601
     environment:
       MONITORING_ENABLED: 'false'
-      ELASTICSEARCH_HOSTS: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es:9200
     networks: 
       - default
 networks:

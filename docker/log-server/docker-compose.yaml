@@ -5,6 +5,8 @@ services:
     image: log:latest
     ports: 
       - 8080:3000
+    networks: 
+      - default
     
   mysql-5.7:
     container_name: mysql
@@ -29,3 +31,7 @@ services:
       - /d/docker/redis/redis.conf:/etc/redis/redis.conf
       - /d/docker/redis/data:/data
     entrypoint: redis-server --appendonly yes
+networks: 
+  default:
+    external:
+      name: elastic
