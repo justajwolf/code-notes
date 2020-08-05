@@ -5,12 +5,21 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-            "name": "py-debug-single",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "internalConsole"
-        },
+			"type": "node",
+			"request": "launch",
+			"name": "js-debug-single",
+			"program": "${file}",
+			"skipFiles": [
+				"<node_internals>/**"
+			]
+		},
+		{
+			"name": "py-debug-single",
+			"type": "python",
+			"request": "launch",
+			"program": "${file}",
+			"console": "internalConsole"
+		},
 		{
 			"type": "node",
 			"request": "launch",
@@ -22,7 +31,7 @@
 				"TS_NODE_PROJECT": "tsconfig.json"
 			},
 			"runtimeArgs": [
-				"--inspect-brk",
+				"--inspect",
 				"-r",
 				"ts-node/register"
 			],
