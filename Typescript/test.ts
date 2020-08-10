@@ -17,7 +17,6 @@
 //   const c = a();
 //   console.log(c);
 // })()
-
 const test2 = (nums) => {
   if (nums.length < 3) return true;
   const asc = [[nums[0]]];
