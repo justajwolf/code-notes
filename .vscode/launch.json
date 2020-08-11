@@ -5,6 +5,40 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "cpp-debug-single",
+			"type": "cppdbg",
+			"request": "launch",
+			"preLaunchTask": "C/C++:build",
+			"program": "${fileDirname}\\${fileBasenameNoExtension}",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}/c++",
+			"environment": [],
+			"externalConsole": false,
+			"logging": {
+				"moduleLoad": false,
+				"trace": true
+			},
+			"setupCommands": [
+					{
+							"description": "为 gdb 启用整齐打印",
+							"text": "-enable-pretty-printing",
+							"ignoreFailures": true
+					}
+			],
+			"linux": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "/usr/bin/gdb"
+			},
+			"osx": {
+				"MIMode": "lldb"
+			},
+			"windows": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "gdb.exe"
+			}
+		},
+		{
 			"type": "node",
 			"request": "launch",
 			"name": "js-debug-single",
