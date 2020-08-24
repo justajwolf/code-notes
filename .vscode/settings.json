@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "C:\\Anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Anaconda3\\python.exe",
+    "files.associations": {
+        "string": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp",
+        "limits": "cpp"
+    }
 }
