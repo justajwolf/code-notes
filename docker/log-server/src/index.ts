@@ -1,7 +1,7 @@
 import * as http from 'http';
 const server = http.createServer();
 let count = 0;
-server.on('request', (req, res) => {
+server.on('request', (req: http.IncomingMessage, res: http.ServerResponse) => {
   const level = ~~(Math.random()*2) ? 'log' : 'info';
   const log = JSON.stringify({level, timestamp: Date.now(), message: `uid:${++count}`});
   console.log(log);
