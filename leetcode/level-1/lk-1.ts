@@ -1,10 +1,8 @@
-const twoSum = (nums, target) => {
-  const resetMap = {
-      [target - nums[0]]: 0
-  };
-  for(let i=1; i<nums.length; i++) {
+export const twoSum = (nums, target) => {
+  const resetMap = {};
+  for(let i=0; i<nums.length; i++) {
       if (resetMap[nums[i]] !== undefined) {
-          return [resetMap[nums[i]], i];
+        return [resetMap[nums[i]], i];
       }
       resetMap[target - nums[i]] = i;
   }

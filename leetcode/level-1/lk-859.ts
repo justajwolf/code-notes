@@ -1,4 +1,4 @@
-const buddyStrings = function(A: string, B: string) {
+export const buddyStrings = function(A: string, B: string) {
   // 1.长度不等false
   if (A.length !== B.length) return false;
   // 2.对位比较不相等的数量
