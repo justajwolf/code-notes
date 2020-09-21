@@ -1,0 +1,48 @@
+version: '3.7'
+networks: 
+    default: 
+        external: 
+            name: basic
+services: 
+    mysql-5.7:
+        container_name: mysql
+        image: mysql:5.7.30
+        restart: always
+        ports: 
+            - 3306:3306
+        expose:
+            - 3306
+        networks:
+            - default
+        environment:
+          - MYSQL_ROOT_PASSWORD=123456
+    mongo:
+        container_name: mongo-latest
+        image: mongo:latest
+        restart: always
+        ports: 
+            - 27017:27017
+        expose: 
+            - 27017
+        networks:
+            - default
+        command: mongod --config /etc/mongo/mongod.conf
+        volumes: 
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./mongo/db:/data/db
+            - ./mongo:/etc/mongo
+    redis:
+        container_name: redis-latest
+        image: redis:latest
+        restart: always
+        ports: 
+            - 6379:6379
+        expose:
+            - 6379
+        networks:
+            - default
+        entrypoint: redis-server /etc/redis/redis.conf
+        volumes: 
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./redis/redis.conf:/etc/redis/redis.conf
+            - ./redis/data:/data
