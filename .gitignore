@@ -1,5 +1,8 @@
 /**/*/node_modules
 /**/*/.DS_Store
+/docker/basic-services/mongo/db/*
+/docker/basic-services/mongo/logs/*
+/docker/basic-services/redis/data/*
 /node_modules
 /c++/**/*.exe
 /c++/**/*.out
