@@ -23,7 +23,16 @@
 					"-g",
 					"${file}",
 					"-o",
-					"${fileDirname}\\${fileBasenameNoExtension}"
+					"${fileDirname}/${fileBasenameNoExtension}"
+				],
+			},
+			"osx": {
+				"command": "/usr/bin/clang++",
+				"args": [
+					"-g",
+					"${file}",
+					"-o",
+					"${fileDirname}/${fileBasenameNoExtension}"
 				],
 			},
 			"options": {
