@@ -1,14 +1,16 @@
 {
-  "name": "api-demo",
+  "name": "vip-admin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "electron index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "CBH",
   "license": "ISC",
   "dependencies": {
-    "electron": "^10.1.4"
+    "electron": "^10.1.5",
+    "sqlite3": "^5.0.0"
   }
 }
