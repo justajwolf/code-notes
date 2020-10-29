@@ -4,5 +4,7 @@
 /docker/basic-services/mongo/logs/*
 /docker/basic-services/redis/data/*
 /node_modules
-/c++/**/*.exe
-/c++/**/*.out
+/c++/
+!/c++/**/*.cpp
+!/c++/**/*.md
+!/c++/**/*.txt

@@ -29,6 +29,8 @@
 			"osx": {
 				"command": "/usr/bin/clang++",
 				"args": [
+					"-std=c++17",
+        	"-stdlib=libc++",
 					"-g",
 					"${file}",
 					"-o",
@@ -38,9 +40,7 @@
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
-			"problemMatcher": [
-				"$gcc"
-			],
+			"problemMatcher": ["$gcc"],
 			"group": "build"
 		}
 	]
