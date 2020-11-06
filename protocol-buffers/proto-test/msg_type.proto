@@ -1,0 +1,12 @@
+syntax = "proto2";
+package test;
+
+enum MsgType {
+  OK = 0;
+  FAIL = 1;
+  ERROR = 2;
+}
+
+message Data {
+  required bytes databuffer = 0;
+}

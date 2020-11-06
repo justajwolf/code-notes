@@ -1,0 +1,41 @@
+syntax = "proto3";
+package test;
+import "msg_type.proto";
+
+service DetailService {
+    rpc GetDetail(ColumnRequest) returns (ColumnResponse);
+};
+
+service ListService {
+    rpc GetDetail(ColumnRequest) returns (ColumnResponse);
+};
+
+message Column {
+    int32 id = 1;
+    string column_cover = 2;
+    string column_title = 3;
+    string column_subtitle = 4;
+    string author_name = 5;
+    string author_intro = 6;
+    string column_intro = 7;
+    string column_unit = 8;
+    uint32 sub_count = 9;
+    string update_frequency = 10;
+    uint32 column_price = 11;
+    optional uint32 column_price_market = 12;
+    repeated Article articles = 13;
+}
+
+message Article {
+    uint32 id = 1;
+    bool is_video_preview = 2;
+    string article_title = 3;
+}
+
+message ColumnResponse {
+    Column column = 1;
+    repeated Column recommendColumns = 2;
+}
+message ColumnRequest {
+    int32 columnid = 1;
+}
