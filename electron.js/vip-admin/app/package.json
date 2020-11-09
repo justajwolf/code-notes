@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron index.js",
-    "build:pages": "gulp build",
+    "start": "npm run build && electron index.js",
+    "build": "gulp build",
     "package": "gulp package"
   },
   "author": "CBH",
