@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && electron index.js",
     "build": "gulp build",
-    "package": "gulp package"
+    "package": "gulp build && electron-forge package",
+    "clean": "gulp all:clean"
   },
   "author": "CBH",
   "license": "MIT",
@@ -26,7 +27,6 @@
       "electronRebuildConfig": {},
       "publishers": {},
       "hooks": {},
-      "buildIdentifier": "my-build",
       "makers": [
         {
           "name": "@electron-forge/maker-zip",
