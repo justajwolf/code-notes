@@ -2,7 +2,6 @@ const {promisify} = require('util');
 const {exec} = require('child_process');
 const { stderr } = require('process');
 const cmd = 'pwd && npm i @types/node';
-
 test3();
 async function test1() {
   exec(cmd, (err, stdout, stderr) => {
