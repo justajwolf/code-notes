@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-container>
+    <el-container id="out">
       <el-header>Header</el-header>
-      <el-container>
-        <el-aside width="20%">Aside</el-aside>
+      <el-container id="in">
+        <el-aside>Aside</el-aside>
         <el-main>Main</el-main>
       </el-container>
     </el-container>
@@ -26,41 +26,36 @@ export default {
 
 <style lang="less" scoped>
 div {
-  margin-left: 10%;
-  margin-right: 10%;
+  height: 100%;
 }
-.el-header,
-.el-footer {
+.el-header {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  vertical-align: middle;
+  height: 30%;
 }
 
 .el-aside {
   background-color: #d3dce6;
   color: #333;
   text-align: center;
-  line-height: 200px;
+  height: 100%;
 }
 
 .el-main {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  height: 100%;
 }
 
-body > .el-container {
-  margin-bottom: 40px;
+#out {
+  margin: 0;
+  height: 100%;
 }
 
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
+#in {
+  height: 70%;
 }
 </style>
