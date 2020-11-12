@@ -1,12 +1,13 @@
 {
   "name": "vip-admin",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a vip-admin",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && electron index.js",
     "build": "gulp build",
     "package": "gulp build && electron-forge package",
+    "make": "electron-forge make",
     "clean": "gulp all:clean"
   },
   "author": "CBH",
@@ -35,11 +36,15 @@
             "linux",
             "win32"
           ]
+        },
+        {
+          "name": "@electron-forge/maker-squirrel"
         }
       ]
     }
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "gulp": "^4.0.2",
     "rimraf": "^3.0.2",
     "sqlite3": "^5.0.0"
