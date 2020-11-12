@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <el-container>
+  <div id="out">
+    <el-container id="all-container">
       <el-header>Header</el-header>
-      <el-container>
+      <el-container id="up-container">
         <el-aside width="20%">Aside</el-aside>
         <el-main>Main</el-main>
       </el-container>
@@ -25,16 +25,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
-div {
-  margin-left: 10%;
-  margin-right: 10%;
+.out {
+  height: inherit;
 }
-.el-header,
-.el-footer {
+#all-container {
+  height: 100%;
+}
+#up-container {
+  height: 70%;
+}
+.el-header {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  height: 20%;
 }
 
 .el-aside {
@@ -49,18 +53,5 @@ div {
   color: #333;
   text-align: center;
   line-height: 160px;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>
