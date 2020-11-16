@@ -1,12 +1,15 @@
 const net = require('net');
 const path = require('path');
+const fs = require('fs');
 const ipc_path = (() => {
   switch(process.platform) {
     case 'win32':
-      return path.join('\\\\?\\pipe', __dirname, `${path.parse(__filename).name}-${Date.now()}`);
+      return path.join('\\\\?\\pipe', __dirname, `net-ipc-${path.parse(__filename).name}`);
     case 'darwin':
     case 'linux':
-      return path.join(__dirname, `${path.parse(__filename).name}-${Date.now()}.sock`);
+      const sock = path.join(__dirname, `net-ipc-${path.parse(__filename).name}.sock`);
+      fs.existsSync(sock) && fs.unlinkSync(sock);
+      return sock;
     default: return '';
   }
 })();
@@ -18,17 +21,19 @@ if (!ipc_path) {
 
 // tcp server
 net.createServer(socket => {
+  // socket.setNoDelay(true);
   socket.on('data', data => {
     console.log(`from client: ${data.toString()}`);
+    socket.write(data);
   }).on('end', () => {
     console.log('server disconnected to client');
   })
-  socket.pipe(socket);
+  // socket.pipe(socket);
 }).listen(ipc_path, () => console.log(`Listening ipc_path: ${ipc_path}`));
 
 // tcp client
 const client = net.createConnection({path: ipc_path}, () => {
-  client.write('changbaihe');
+  client.end('changbaihe');
 })
 .on('data', data => {
   console.log(`from server: ${data.toString()}`);
