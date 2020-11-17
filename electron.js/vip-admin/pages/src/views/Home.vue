@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container id="out">
-      <el-header>Header</el-header>
+      <el-header style="height: 15%">Header</el-header>
       <el-container id="in">
         <el-aside>Aside</el-aside>
         <el-main>Main</el-main>
@@ -32,8 +32,6 @@ div {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  vertical-align: middle;
-  height: 30%;
 }
 
 .el-aside {
@@ -53,9 +51,5 @@ div {
 #out {
   margin: 0;
   height: 100%;
-}
-
-#in {
-  height: 70%;
 }
 </style>
