@@ -1,10 +1,16 @@
 <template>
   <div>
     <el-container id="out">
-      <el-header style="height: 15%">Header</el-header>
+      <el-header style="height: 80px">
+        <Header></Header>
+      </el-header>
       <el-container id="in">
-        <el-aside>Aside</el-aside>
-        <el-main>Main</el-main>
+        <el-aside style="width: 230px">
+          <Nav></Nav>
+        </el-aside>
+        <el-main>
+          <Main></Main>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -12,14 +18,16 @@
 
 <script>
 // @ is an alias to /src
-// import Nav from '@/components/Nav.vue';
-// import Main from '@/components/Main.vue';
+import Nav from '@/components/Nav.vue';
+import Main from '@/components/Main.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'Home',
   components: {
-    // Nav,
-    // Main
+    Nav,
+    Main,
+    Header
   }
 };
 </script>
@@ -29,15 +37,15 @@ div {
   height: 100%;
 }
 .el-header {
-  background-color: #b3c0d1;
-  color: #333;
+  background-color: #545c64;
+  color: #67c23a;
   text-align: center;
 }
 
 .el-aside {
-  background-color: #d3dce6;
+  background-color: #545c64;
   color: #333;
-  text-align: center;
+  // text-align: center;
   height: 100%;
 }
 
