@@ -32,3 +32,10 @@ docker run -p 8080:7070 mysql:latest
 // -d --detach
 docker -d mysql:lastet
 ```
+
+## image
+> 镜像本地批量导出
+```
+1.docker images | grep -v REPOSITORY | awk 'BEGIN{OFS=":";ORS=" "}{print $1,$2}'
+2.docker save -o 123.tar `docker images | grep -v REPOSITORY | awk 'BEGIN{OFS=":";ORS=" "}{print $1,$2}'`
+```
