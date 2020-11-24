@@ -28,3 +28,13 @@ async.auto({
     console.log('err = ', err);
     console.log('results = ', results);
 });
+
+async.times(
+    5, (i, next) => {
+        // console.log(i);
+        next(null, i);
+    }, 
+    (err, res) => {
+        console.log(res);
+    },
+);
