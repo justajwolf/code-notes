@@ -4,6 +4,7 @@
 /docker/basic-services/mongo/logs/*
 /docker/basic-services/redis/data/*
 !/docker/basic-services/mongo/logs/README.md
+/**/*/package-lock.json
 /node_modules
 /c++/
 !/c++/**/*.cpp

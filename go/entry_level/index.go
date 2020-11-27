@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func main() {
+func index() {
 	var a string = "changbaihe"
 	fmt.Println(a)
 
@@ -17,4 +19,8 @@ func main() {
 
 	f := "lvrui"
 	fmt.Println(f)
+	g := &f
+	fmt.Println(g)
+
+	// sayHello()
 }
