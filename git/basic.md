@@ -27,5 +27,9 @@ $git config --global core.editor vim
     git checkout -b <branchName> origin/<branchName>
 5.版本回退(强制回退到上一个版本----代码丢失)
     git reset --hard HEAD^
+6.合并中止
+    git merge --abort
+7.更新本地remote branch list
+    git remote update origin --prune
 ```
 
