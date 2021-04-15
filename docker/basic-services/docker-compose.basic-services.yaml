@@ -28,7 +28,7 @@ services:
         environment:
           - MYSQL_ROOT_PASSWORD=123456
     mongo:
-        container_name: mongo-latest
+        container_name: mongo
         image: mongo:latest
         restart: always
         ports: 
@@ -42,8 +42,9 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./mongo/db:/data/db
             - ./mongo:/etc/mongo
+            - ./mongo/logs/:/var/log/mongodb/
     redis:
-        container_name: redis-latest
+        container_name: redis
         image: redis:latest
         restart: always
         ports: 
@@ -59,6 +60,7 @@ services:
             - ./redis/data:/data
 # docker容器管理器
     portainer:
+        container_name: portainer
         image: portainer/portainer
         ports:
             - 9000:9000
