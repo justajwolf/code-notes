@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   es: 
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
     container_name: es
     hostname: es.cn
     environment:
@@ -18,7 +18,7 @@ services:
     networks:
       - default
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
     container_name: es01
     hostname: es01.cn
     environment:
@@ -40,7 +40,7 @@ services:
     networks:
       - default
   es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
     container_name: es02
     environment:
       - node.name=es02
@@ -58,7 +58,7 @@ services:
     networks:
       - default
   es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
     container_name: es03
     environment:
       - node.name=es03

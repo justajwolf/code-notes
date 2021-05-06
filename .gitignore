@@ -3,6 +3,8 @@
 /docker/basic-services/mongo/db/*
 /docker/basic-services/mongo/logs/*
 /docker/basic-services/redis/data/*
+/elastic-stack/filebeat/logs/*
+!/elastic-stack/filebeat/logs/README.md
 !/docker/basic-services/mongo/logs/README.md
 !/docker/basic-services/mongo/db/README.md
 /**/*/package-lock.json
