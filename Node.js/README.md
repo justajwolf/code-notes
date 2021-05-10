@@ -13,11 +13,9 @@ node --prof-process isolate-*.log > processed.txt
 ```
 
 注：isolate-*.log文件内容，如下图：
-
   ![image-20210510205914171](images/image-20210510205914171.png)
 
 注：processed.txt文件内容，如下图：
-
   ![image-20210510205958393](images/image-20210510205958393.png)
 
 ### 1.2 vscode-js-profile-flame 插件
