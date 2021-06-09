@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/c++/**"
+                "${workspaceFolder}/c++/**",
+                "${default}"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,17 +13,17 @@
             ],
             "compilerPath": "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe",
             "cStandard": "${default}",
-            "cppStandard": "gnu++20",
-            "intelliSenseMode": "gcc-x64"
+            "cppStandard": "${default}",
+            "intelliSenseMode": "${default}"
         },
         {
             "name": "Linux",
             "includePath": ["${workspaceFolder}/c++/**"],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "${default}",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "clang-x64"
+            "cppStandard": "${default}",
+            "intelliSenseMode": "${default}"
         },
         {
             "name": "Mac",
@@ -33,8 +34,8 @@
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "${default}",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "clang-x64"
+            "cppStandard": "${default}",
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4
