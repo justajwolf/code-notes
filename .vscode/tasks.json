@@ -11,11 +11,7 @@
 					"${file}",
 					"-o",
 					"${fileDirname}\\${fileBasenameNoExtension}.exe"
-				],
-				"presentation": {
-					"reveal": "never",
-					"clear": true
-				}
+				]
 			},
 			"linux": {
 				"command": "/usr/bin/g++",
@@ -38,7 +34,7 @@
 				],
 			},
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${workspaceFolder}/c++"
 			},
 			"problemMatcher": ["$gcc"],
 			"group": "build"
