@@ -1,4 +1,4 @@
-package main
+package study
 
 import (
 	"fmt"
@@ -21,6 +21,4 @@ func index() {
 	fmt.Println(f)
 	g := &f
 	fmt.Println(g)
-
-	// sayHello()
 }

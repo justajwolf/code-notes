@@ -26,4 +26,5 @@ func main() {
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
+	log.Println("listening.....")
 }
