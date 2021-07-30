@@ -1,0 +1,8 @@
+# The global section
+concurrent = 1
+check_interval = 3
+log_level = "warning"
+log_format = "text"
+
+[session_server]
+  session_timeout = 1800

@@ -39,6 +39,14 @@ docker -d mysql:lastet
 1.docker images | grep -v REPOSITORY | awk 'BEGIN{OFS=":";ORS=" "}{print $1,$2}'
 2.docker save -o 123.tar `docker images | grep -v REPOSITORY | awk 'BEGIN{OFS=":";ORS=" "}{print $1,$2}'`
 ```
+> 镜像导入
+```
+1.docker load --input images.tar
+或
+2.docker load --i images.tar
+或
+3.docker load < images.tar
+```
 > 批量删除缓存镜像
 ```
 1.docker image rm -f `docker images | grep "<none>" | awk 'BEGIN{OFS=":";ORS=" "}{print $3}'`

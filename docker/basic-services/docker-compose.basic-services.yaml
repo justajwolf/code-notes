@@ -11,6 +11,7 @@ services:
     nginx: 
         container_name: nginx
         image: nginx:latest
+        restart: always
         ports: 
             - 80:80
         volumes: 
@@ -64,6 +65,16 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./redis/redis.conf:/etc/redis/redis.conf
             - ./redis/data:/data
+    gitlab-runner:
+        container_name: gitlab-runner
+        image: gitlab/gitlab-runner:latest
+        ports:
+            - 8093:8093
+        networks:
+            - default
+        volumes: 
+            - /var/run/docker.sock:/var/run/docker.sock
+            # - ./gitlab/runner:/etc/gitlab-runner
 # docker容器管理器
     portainer:
         container_name: portainer
