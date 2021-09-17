@@ -1,0 +1,51 @@
+version: "3"
+networks:
+  default:
+    external:
+      name: basic
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - default
+    ports:
+      - '2189:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka01:
+    container_name: kafka01
+    image: 'bitnami/kafka:latest'
+    networks:
+      - default
+    ports:
+      - '9992:9092'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      # 本地host需要配置kafka01到指定ip
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka01:9992
+    depends_on:
+      - zookeeper
+  kafka02:
+    container_name: kafka02
+    image: 'bitnami/kafka:latest'
+    networks:
+      - default
+    ports:
+      - '9993:9092'
+    environment:
+      - KAFKA_BROKER_ID=2
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      # 本地host需要配置kafka02到指定ip
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka02:9993
+    depends_on:
+      - zookeeper
