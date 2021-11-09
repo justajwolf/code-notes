@@ -1,12 +1,15 @@
 version: '3.7'
-# 首次使用需创建basic网络:$ docker network create basic -d bridge
 networks: 
     default: 
-        external: 
-            name: basic
+        driver: bridge
+        name: basic
     elastic:
-        external:
-            name: elastic
+        driver: bridge
+        name: elastic
+volumes:
+    mongo-data: 
+        driver: local
+        name: mongo-data
 services: 
     nginx: 
         container_name: nginx
@@ -47,9 +50,10 @@ services:
         command: mongod --config /etc/mongo/mongod.conf
         volumes: 
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./mongo/db:/data/db
             - ./mongo:/etc/mongo
             - ./mongo/logs/:/var/log/mongodb/
+            - mongo-data:/data/db
+            - mongo-data:/data/configdb
     redis:
         container_name: redis
         image: redis:latest
