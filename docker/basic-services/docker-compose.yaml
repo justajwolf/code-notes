@@ -17,10 +17,15 @@ services:
         restart: always
         ports: 
             - 80:80
+            - 443:443
+            - 27016:27016
+            - 6378:6378
+            # - 3305:3305
         volumes: 
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./ubuntu.sources.list:/etc/apt/sources.list
+            - ./nginx/sources.list:/etc/apt/sources.list
             - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/conf.tcp.d:/etc/nginx/conf.tcp.d
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         networks: 
             - default
