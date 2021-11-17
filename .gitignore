@@ -9,7 +9,7 @@
 !/docker/basic-services/mongo/db/README.md
 /**/*/package-lock.json
 /node_modules
-/c++/
-!/c++/**/*.cpp
-!/c++/**/*.md
-!/c++/**/*.txt
+/lang/cpp/
+!/lang/cpp/**/*.cpp
+!/lang/cpp/**/*.md
+!/lang/cpp/**/*.txt
