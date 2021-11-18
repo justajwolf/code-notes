@@ -20,7 +20,7 @@ services:
             - 443:443
             - 27016:27016
             - 6378:6378
-            # - 3305:3305
+            - 3305:3305
         volumes: 
             - /var/run/docker.sock:/var/run/docker.sock
             - ./nginx/sources.list:/etc/apt/sources.list
