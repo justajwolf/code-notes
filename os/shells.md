@@ -26,7 +26,10 @@
 - 临时获取root用户，执行一个命令
   - su root -c [cmd]
 
-### 文件编辑
+### 文件编辑/管理
+- tee 
+  - 从标准输入设备读取数据，将其内容输出到标准输出设备，同时保存成文件
+    - tee [-a] [文件名]
 - sed
   - 直接参数
     - -i: 直接修改源文件
@@ -49,7 +52,10 @@
   - 文件末尾追加行
     - sed -i '$a[追加内容]' [文件名]
 
-### 磁盘管理(假设当前root用户)
+### 网络管理
+- netstat - 查看显示网络状态
+
+### 磁盘管理/维护
 - df
   - 检查文件系统的磁盘空间占用情况
     - df -hT [目录或文件名]
@@ -86,6 +92,65 @@
 
 ### 安装vim，telnet，ifconfig，ping命令 
 - sudo apt install telnet net-tools iputils-ping -y
+
+
+## **ubuntu/debian**
+
+### apt-mark - 对软件包进行设置(手动/自动)安装标记
+- 标记指定软件包为自动安装
+  - apt-mark auto [package]
+- 标记指定软件包为手动安装
+  - apt-mark manual [package]
+- 将meta包的所有依赖项标记为自动安装
+  - apt-mark minimize-manual [package]
+- 标记指定软件包为保留(held back)，阻止软件自动更新
+  - apt-mark hold [package]
+- 取消指定软件包的保留(held back)标记，解除阻止自动更新
+  - apt-mark unhold [package]
+- 列出所有自动安装的软件包
+  - apt-mark showauto [package]
+- 列出所有手动安装的软件包
+  - apt-mark showmanual [package]
+- 列出设为保留的软件包
+  - apt-mark showhold [package]
+
+### apt-key - 包密钥管理工具
+- 把下载的key添加到本地trusted数据库中
+  - apt-key add key
+- 从本地trusted数据库删除key
+  - apt-key del key
+- 列出已保存在系统中key
+  - apt-key list
+- 更新本地trusted数据库，删除过期key
+  - apt-key update
+
+### apt - 包管理工具(Advanced Packaging Tool)
+- 列出所有可更新的软件list
+  - apt update
+- 升级软件包
+  - apt upgrade
+- 列出可更新的软件包及版本信息
+  - apt list --upgradeable
+  - apt list --installed
+  - apt list --all-versions
+- 升级软件包，升级前先删除需要更新软件包
+  - apt full-upgrade
+- 安装指定package
+  - apt install [package]
+  - apt install [package1] [package2] [package3]
+- 更新指定package
+  - apt update [package]
+- 显示软件包具体信息
+  - apt show [package]
+- 删除指定package
+  - apt remove [package]
+- 清理不再使用的依赖和库文件
+  - apt autoremove
+- 移除软件包及配置文件
+  - apt purge [package]
+- 查找软件包命令
+  - apt search [keyword]
+
 
 ## **docker**
 
