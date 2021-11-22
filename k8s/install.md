@@ -22,7 +22,20 @@ EOF
   - apt-get install -y kubelet kubeadm kubectl
   - apt-mark hold kubelet kubeadm kubectl
 
-## kubeadm创建集群
+## docker 运行时安装
+
+### 官方教程
+  - [[ubuntu](https://docs.docker.com/engine/install/ubuntu/)]
+  - [[debian](https://docs.docker.com/engine/install/debian/)]
+### 错误/警告
+  - docker info 会显示 WARNING: No swap limit support
+    - 编辑/etc/default/grub，给GRUB_CMDLINE_LINUX配置添加 cgroup_enable=memory swapaccount=1 参数
+      - vim /etc/default/grub
+    - 保存文件更新
+      - update-grub
+    - 重启电脑
+      - reboot
+## kubeadm 创建集群
 
 - 创建控制平面节点
   - kubeadm init [[文档地址](https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/)]
