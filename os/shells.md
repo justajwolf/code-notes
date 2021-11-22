@@ -81,6 +81,15 @@
     - unmount [-fn] [挂载点]
 - 查看已挂载的所有设备
   - cat /proc/mounts
+- 开机自动挂载指定设备
+  - 查看系统所有设备块得信息，找到需要挂载的设备信息
+    - blkid
+  - 查看当前已配置挂载的信息
+    - cat /etc/fstab
+  - 编辑/etc/fstab，照抄一个已挂载的格式，填入blkid查到的信息
+    - vim /etc/fstab
+  - 重启电脑
+    - reboot
 
 ### 更换阿里镜像源
 - sed -i 's_http://deb.debian.org_http://mirrors.aliyun.com_g' /etc/apt/sources.list
