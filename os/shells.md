@@ -2,29 +2,38 @@
 
 ## **linux/osx**
 
-### 查看系统版本
-- cat /proc/version
-- cat /etc/os-release
+### 常用命令
 
-### 查看所有用户和用户组信息
-- cat /etc/passwd
-- cat /etc/group
+- 查看系统版本
+  - cat /proc/version
+  - cat /etc/os-release
 
-### 给用户赋予root权限
-- sudo usermod -g root jwolf
+- 查看所有用户和用户组信息
+  - cat /etc/passwd
+  - cat /etc/group
 
-### 给hosts添加写权限
-- sudo chmod a+w hosts
+- 给用户赋予root权限
+  - sudo usermod -g root jwolf
 
-### 用户身份权限
-- sudo - 超级用户执行(super user do)
-- su - 切换用户(switch user)
-- 临时获取root部分权限
-  - su root
-- 切换成root用户
-  - su - root
-- 临时获取root用户，执行一个命令
-  - su root -c [cmd]
+- 给hosts添加写权限
+  - sudo chmod a+w hosts
+
+- 用户身份权限
+  - sudo - 超级用户执行(super user do)
+  - su - 切换用户(switch user)
+  - 临时获取root部分权限
+    - su root
+  - 切换成root用户
+    - su - root
+  - 临时获取root用户，执行一个命令
+    - su root -c [cmd]
+
+- 换https源前，先安装公共证书
+  - sudo apt update
+  - sudo apt install apt-transport-https ca-certificates
+
+- 安装vim，telnet，ifconfig，ping命令 
+  - sudo apt install telnet net-tools iputils-ping -y
 
 ### 文件编辑/管理
 - tee 
@@ -54,6 +63,8 @@
 
 ### 网络管理
 - netstat - 查看显示网络状态
+- ip - 显示或配置网络工具
+- iptables - 配置预处理数据包规则 (过滤/网络地址转换/包修改/跟踪)
 
 ### 磁盘管理/维护
 - df
@@ -91,19 +102,11 @@
   - 重启电脑
     - reboot
 
-### 更换阿里镜像源
-- sed -i 's_http://deb.debian.org_http://mirrors.aliyun.com_g' /etc/apt/sources.list
-- sed -i 's_http://security.debian.org_http://mirrors.aliyun.com_g' /etc/apt/sources.list
-
-### 换https源前，先安装公共证书
-- sudo apt update
-- sudo apt install apt-transport-https ca-certificates
-
-### 安装vim，telnet，ifconfig，ping命令 
-- sudo apt install telnet net-tools iputils-ping -y
-
-
 ## **ubuntu/debian**
+
+### 更换阿里镜像源
+  - sed -i 's_http://deb.debian.org_http://mirrors.aliyun.com_g' /etc/apt/sources.list
+  - sed -i 's_http://security.debian.org_http://mirrors.aliyun.com_g' /etc/apt/sources.list
 
 ### apt-mark - 对软件包进行设置(手动/自动)安装标记
 - 标记指定软件包为自动安装
