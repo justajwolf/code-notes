@@ -35,6 +35,26 @@
 - 安装vim，telnet，ifconfig，ping命令 
   - sudo apt install telnet net-tools iputils-ping -y
 
+### 常见工具
+  - curl [详见](https://curl.se/docs/manpage.html)
+    - 下载文件
+      ```shell
+      # 下载url的文件到当前目录，保留远处的文件名
+      curl -O [url]
+
+      # 下载url的文件到当前目录，使用本地的文件名
+      curl -o [本地文件名] [url]
+
+      # 下载url不是最终的文件地址，需要重定向下载，加上(-L/--location)参数
+      curl -o [本地文件名] [url] -L
+      ```
+    - 访问对于自签证书测试https，忽略证书警告，允许不使用证书到SSL站点
+      ```shell
+      # -k 或 --insecure
+      curl -k [https:url]
+      curl --insecure [https:url]
+      ```
+
 ### 文件编辑/管理
 - tee 
   - 从标准输入设备读取数据，将其内容输出到标准输出设备，同时保存成文件
