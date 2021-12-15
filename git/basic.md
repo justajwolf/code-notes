@@ -108,6 +108,9 @@
    
    # 推送代码 到 远程分支代码(默认关联的远程分支)
    git push
+   # 强制推送到远程分支（长用于reset之后，推送本地最新修改commit到远程分支，覆盖掉reset之前的commit，谨慎使用）
+   git push -f
+   git push --force
    
    # 推送代码 到 远程分支代码(指定远程分支名)
    git push origin <branchName>
