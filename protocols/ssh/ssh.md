@@ -2,31 +2,55 @@
 
 
 
-## 1.配置和问题整理
+## 配置和问题整理
 
 - [常见配置](./config.md)
 - [FAQ](./issues.md)
 
-## 2. 生成ssh公私钥
+## ssh-keygen 
 
-```shell
-$ ssh-keygen -t rsa -C "youremail@example.com"
-```
-## 3. ssh 指定地址测试
+> OpenSSH authentication key utility
+
+- 生成ssh公私钥
+
+  ```shell
+  ssh-keygen -t rsa -C "youremail@example.com"
+  ```
+
+## ssh-keyscan
+> gather SSH public keys from servers
+
+- 添加remote机器公钥 => known_hosts，例github:
+
+  ```shell
+  ssh-keyscan github.com >> ~/.ssh/known_hosts
+  ```
+
+## ssh-copy-id
+> use locally available keys to authorise logins on a remote machine
+
+- 将本地公钥，添加到remote的authorized_keys文件中
+
+  ```shell
+  ssh-copy-id -i ~/.ssh/id_rsa.pub [user]@[ip]
+  ```
+
+## ssh
+> OpenSSH remote login client
 
 - 测试ssh是否可以连接到github
 
-```shell
-ssh -T git@github.com
-Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
-```
+  ```shell
+  ssh -T git@github.com
+  Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
+  ```
 - 查看ssh状态连接的整个过程debug日志
 
-```shell
-ssh -v git@github.com
-```
-
-## 4. ssh 文件传递
+  ```shell
+  ssh -v git@github.com
+  ```
+## scp
+> OpenSSH secure file copy (文件传输) 
 
 - 假设当前server：
 

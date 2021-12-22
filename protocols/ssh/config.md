@@ -4,6 +4,9 @@
 
 - 将本地的id_rsa.pub公钥，添加到server端的~/.ssh/authorized_keys文件中
 
+  ```shell
+  ssh-copy-id -i ~/.ssh/id_rsa.pub [user]@[ip]
+  ```
 - 编辑本地配置文件，~/.ssh/config，添加如下内容：
 
   ```tex
