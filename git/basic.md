@@ -38,6 +38,15 @@
    # 全局设置https请求github.com的socks5代理
    git config --global https.https://github.com.proxy socks5://<ip>:<port>
    ```
+3. 文件权限
+
+   ```shell
+   # 查看当前文件权限
+   git ls-files --stage [file.sh]
+
+   # 给指定文件添加可执行权限
+   git update-index --chmod +x [file.sh]
+   ```
 
 ## 二、操作命令
 
