@@ -167,3 +167,15 @@
    git checkout <fileName>
    git checkout <commitId> <fileName>
    ```
+6. 常见操作扩展
+
+   - 修改上一次提交信息(previous commit), [详见2.4](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Thingss)
+
+      ```shell
+      # 修改上一次提交msg
+      git commit --amend -m "new msg"
+
+      # 给上次提交补充 补充修改内容
+      git add [file]
+      git commit --amend
+      ```
