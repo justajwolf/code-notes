@@ -1,59 +1,59 @@
 version: '3.7'
-networks: 
-    default: 
+networks:
+    default:
         driver: bridge
         name: basic
     elastic:
         driver: bridge
         name: elastic
 volumes:
-    mongo-data: 
+    mongo-data:
         driver: local
         name: mongo-data
-services: 
-    nginx: 
+services:
+    nginx:
         container_name: nginx
         image: nginx:latest
         restart: always
-        ports: 
+        ports:
             - 80:80
             - 443:443
             - 27016:27016
             - 6378:6378
             - 3305:3305
-        volumes: 
+        volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./nginx/sources.list:/etc/apt/sources.list
             - ./nginx/conf.d:/etc/nginx/conf.d
             - ./nginx/conf.tcp.d:/etc/nginx/conf.tcp.d
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-        networks: 
+        networks:
             - default
             - elastic
     mysql-5.7:
         container_name: mysql
         image: mysql:5.7.36
         restart: always
-        ports: 
+        ports:
             - 3306:3306
         expose:
             - 3306
         networks:
             - default
         environment:
-          - MYSQL_ROOT_PASSWORD=123456
+            - MYSQL_ROOT_PASSWORD=123456
     mongo:
         container_name: mongo
         image: mongo:latest
         restart: always
-        ports: 
+        ports:
             - 27017:27017
-        expose: 
+        expose:
             - 27017
         networks:
             - default
         command: mongod --config /etc/mongo/mongod.conf
-        volumes: 
+        volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./mongo:/etc/mongo
             - ./mongo/logs/:/var/log/mongodb/
@@ -63,14 +63,14 @@ services:
         container_name: redis
         image: redis:latest
         restart: always
-        ports: 
+        ports:
             - 6379:6379
         expose:
             - 6379
         networks:
             - default
         entrypoint: redis-server /etc/redis/redis.conf
-        volumes: 
+        volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./redis/redis.conf:/etc/redis/redis.conf
             - ./redis/data:/data
@@ -81,10 +81,10 @@ services:
             - 8093:8093
         networks:
             - default
-        volumes: 
+        volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             # - ./gitlab/runner:/etc/gitlab-runner
-# docker容器管理器
+            # docker容器管理器
     portainer:
         container_name: portainer
         image: portainer/portainer
