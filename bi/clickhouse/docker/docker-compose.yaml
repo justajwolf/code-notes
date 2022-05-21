@@ -1,0 +1,43 @@
+version: '3.7'
+networks:
+    default:
+        driver: bridge
+        name: basic
+    chnet:
+        driver: bridge
+        name: chnet
+volumes:
+    ch-data:
+        driver: local
+        name: ch-data
+services:
+    ch-server:
+        container_name: ch-server
+        image: clickhouse/clickhouse-server:latest
+        restart: always
+        ports:
+            - 18123:8123
+            - 19000:9000
+            - 19100:9100
+        expose:
+            - 8123
+            - 9000
+            - 9100
+        environment:
+            - CLICKHOUSE_UID=0
+            - CLICKHOUSE_GID=0
+            - CLICKHOUSE_DB=pc_ch_db
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ch-data:/var/lib/clickhouse
+            - ./logs:/val/log/clickhouse-server
+            # - ./config.d:/etc/clickhouse-server/config.d
+            - ./usert.d:/etc/clickhouse-server/usert.d
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        networks:
+            - default
+            - chnet
+        ulimits:
+            nofile:
+                soft: 262144
+                hard: 262144
