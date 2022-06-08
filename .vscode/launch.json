@@ -44,6 +44,9 @@
 			"request": "launch",
 			"name": "js-debug-single",
 			"program": "${file}",
+			"console": "internalConsole",
+			"outputCapture": "std",
+			"internalConsoleOptions": "neverOpen",
 			"skipFiles": [
 				"<node_internals>/**"
 			]
