@@ -48,7 +48,7 @@
    git update-index --chmod +x [file.sh]
    ```
 
-## 二、操作命令
+## 二、常用基础命令（工作场景）
 
 1. 远程仓库 to 本地仓库
 
@@ -179,3 +179,11 @@
       git add [file]
       git commit --amend
       ```
+
+## 三、管道命令（写脚本，写库等场景）
+
+1. rev-parse
+   ```shell
+   # 查看当前位置相对于.git目录的深度
+   git rev-parse --show-cdup
+   ```
