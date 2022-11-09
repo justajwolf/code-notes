@@ -1,4 +1,4 @@
-# 本地性能分析方法 <!-- {docsify-ignore} -->
+# 本地性能分析方法 
 
 ## Easy profiling
 

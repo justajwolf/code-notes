@@ -1,6 +1,6 @@
 # ssh 常见配置 <!-- {docsify-ignore} -->
 
-## 1. 配置ssh免密登录
+## 1. ssh配置免密登录
 
 - 将本地的id_rsa.pub公钥，添加到server端的~/.ssh/authorized_keys文件中
 
@@ -20,7 +20,7 @@
 
 - 假如 自定义host => aliyun，直接 ssh aliyun 即可。
 
-## 2. 关闭ssh服务端，使用密码登录
+## 2. ssh服务端禁用密码登录
 
 - 编辑ssh服务端配置，/etc/ssh/sshd_config
 

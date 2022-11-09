@@ -1,2 +1,5 @@
-- [Golang](#)
-  - [编写第一个go项目](/langs/go/quick-start.md)
+- [Golang](/langs/go/README.md)
+  - [Notes](#)
+    - [起手第一个go项目](/langs/go/quick-start.md)
+  - [Tools](#)
+    - [fileserver - 静态文件托管工具](/langs/go/fileserver/README.md)
