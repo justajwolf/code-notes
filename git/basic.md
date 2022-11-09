@@ -1,9 +1,9 @@
 # git基本命令
-## 一、配置命令
+## 配置命令（全局/本地配置）
 
 1. 常见配置
 
-   ```shell
+   ```bash
    # 查看当前git配置(local覆盖glbal之后的配置)
    git config --list
    # 查看全局git配置
@@ -31,7 +31,7 @@
 
 2. 代理配置
 
-   ```shell
+   ```bash
    # 全局设置http请求github.com的socks5代理
    git config --global http.https://github.com.proxy socks5://<ip>:<port>
    
@@ -40,7 +40,7 @@
    ```
 3. 文件权限
 
-   ```shell
+   ```bash
    # 查看当前文件权限
    git ls-files --stage [file.sh]
 
@@ -48,11 +48,11 @@
    git update-index --chmod +x [file.sh]
    ```
 
-## 二、常用基础命令（工作场景）
+## 常用基础命令（工作场景）
 
 1. 远程仓库 to 本地仓库
 
-   ```shell
+   ```bash
    # 克隆仓库 默认分支
    git clone <url>
    
@@ -68,7 +68,7 @@
 
 2. 删除分支
 
-   ```shell
+   ```bash
    # 删除本地分支
    git branch -d <branchName>
    git branch -delete <branchName>
@@ -80,7 +80,7 @@
 
 3. 远程分支 <=> 本地分支 
 
-   ```shell
+   ```bash
    # 建议本地分支名 同 远程分支名保持一致
    # 创建本地分支，关联到远程分支，拉取远程分支代码到新建本地分支，并切换到本地新建分支
    git checkout -b <branchName> origin/<branchName>
@@ -127,7 +127,7 @@
 
 4. 版本回退
 
-   ```shell
+   ```bash
    # 本地 回退到 上次提交 (撤回修改代码到未提交状态)
    git reset HEAD^
    
@@ -141,7 +141,7 @@
 
 5. 本地常见操作
 
-   ```shell
+   ```bash
    # 查看提交记录（常见用于reset时候，获取commitId）
    git log
    
@@ -171,7 +171,7 @@
 
    - 修改上一次提交信息(previous commit), [详见2.4](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Thingss)
 
-      ```shell
+      ```bash
       # 修改上一次提交msg
       git commit --amend -m "new msg"
 
@@ -180,10 +180,10 @@
       git commit --amend
       ```
 
-## 三、管道命令（写脚本，写库等场景）
+## 管道命令（写脚本，写库等场景）
 
 1. rev-parse
-   ```shell
+   ```bash
    # 查看当前位置相对于.git目录的深度
    git rev-parse --show-cdup
    ```

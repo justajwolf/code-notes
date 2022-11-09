@@ -1,15 +1,15 @@
-# ssh 常见配置
+# ssh 常见配置 <!-- {docsify-ignore} -->
 
 ## 1. 配置ssh免密登录
 
 - 将本地的id_rsa.pub公钥，添加到server端的~/.ssh/authorized_keys文件中
 
-  ```shell
+  ```bash
   ssh-copy-id -i ~/.ssh/id_rsa.pub [user]@[ip]
   ```
 - 编辑本地配置文件，~/.ssh/config，添加如下内容：
 
-  ```tex
+  ```
   # 自定义host，随便写，怎样短易于识别怎么写
   Host [自定义host]
       User [user]
@@ -24,7 +24,7 @@
 
 - 编辑ssh服务端配置，/etc/ssh/sshd_config
 
-  ```tex
+  ```
   # 密码认证，设置关闭
   PasswordAuthentication no
   
@@ -42,7 +42,7 @@
 
 - 重启ssh服务，即可
 
-  ```shell
+  ```bash
   service ssh restart
   ```
 
@@ -52,7 +52,7 @@
 
 - 编辑~/.ssh/config，举例github，加入如下配置：
 
-  ```shell
+  ```
   # 使用ip:port地址代理，一般是socks5代理
   host github.com
       ProxyCommand /usr/bin/nc -X connect -x <ip>:<port> %h %p
@@ -67,13 +67,13 @@
 
 - 第一步，同上，替换<port>为代理的端口号，<ip>为windows的ip，获取方式如下：
 
-  ```shell
+  ```bash
   cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
   ```
 
 - 第二步，编写一个进入shell时，用于查询winip，并更新到ssh代理配置上
 
-  ```shell
+  ```bash
   # 创建更新ssh代理脚本
   cat << EOF > ~/up_ssh_proxy.sh
   export winip=$(ip route | grep default | awk '{print $3}')

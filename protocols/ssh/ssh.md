@@ -1,11 +1,4 @@
-# ssh基本命令
-
-
-
-## 配置和问题整理
-
-- [常见配置](./config.md)
-- [FAQ](./issues.md)
+# ssh 基本命令 <!-- {docsify-ignore} -->
 
 ## ssh-keygen 
 
@@ -13,7 +6,7 @@
 
 - 生成ssh公私钥
 
-  ```shell
+  ```bash
   ssh-keygen -t rsa -C "youremail@example.com"
   ```
 
@@ -22,7 +15,7 @@
 
 - 添加remote机器公钥 => known_hosts，例github:
 
-  ```shell
+  ```bash
   ssh-keyscan github.com >> ~/.ssh/known_hosts
   ```
 
@@ -31,7 +24,7 @@
 
 - 将本地公钥，添加到remote的authorized_keys文件中
 
-  ```shell
+  ```bash
   ssh-copy-id -i ~/.ssh/id_rsa.pub [user]@[ip]
   ```
 
@@ -40,13 +33,13 @@
 
 - 测试ssh是否可以连接到github
 
-  ```shell
+  ```bash
   ssh -T git@github.com
   Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
   ```
 - 查看ssh状态连接的整个过程debug日志
 
-  ```shell
+  ```bash
   ssh -v git@github.com
   ```
 ## scp
@@ -70,7 +63,7 @@
 
 - 从本地上传文件到server
 
-  ```shell
+  ```bash
   # 将本地的a.txt 上传到 远程server的~/a.txt
   scp ./a.txt root@10.100.1.1:~/a.txt
   
@@ -80,7 +73,7 @@
 
 - 从server下载文件到本地
 
-  ``` shell
+  ``` bash
   # 下载远程server的~/b.txt文件 到 本地 ./b.txt
   scp root@10.100.1.1:~/b.txt ./b.txt 
   

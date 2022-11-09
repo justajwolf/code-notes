@@ -1,4 +1,4 @@
-# shell命令
+# shell命令 <!-- {docsify-ignore} -->
 
 ## **linux/osx**
 
@@ -38,7 +38,7 @@
 ### 常见工具
   - curl [详见](https://curl.se/docs/manpage.html)
     - 下载文件
-      ```shell
+      ```bash
       # 下载url的文件到当前目录，保留远处的文件名
       curl -O [url]
 
@@ -49,7 +49,7 @@
       curl -o [本地文件名] [url] -L
       ```
     - 访问对于自签证书测试https，忽略证书警告，允许不使用证书到SSL站点
-      ```shell
+      ```bash
       # -k 或 --insecure
       curl -k [https:url]
       curl --insecure [https:url]

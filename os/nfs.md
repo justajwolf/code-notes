@@ -3,7 +3,7 @@
 > 注：当前继续ubuntu 20.04，假设当前为root用户
 
 ## 搭建nfs服务端
-  ```shell
+  ```bash
   # 更新软件包
   apt-get update
   
@@ -25,7 +25,7 @@
 
 ## windows系统挂载nfs目录
 
-```cmd
+```powershell
 # 使用cmd执行格式：mount -o anon <nfs远程目录> <本地映射的磁盘名>，例：
 mount -o anon \\10.200.1.1\mnt\vms g:
 ```

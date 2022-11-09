@@ -1,8 +1,8 @@
+# 本地性能分析方法 <!-- {docsify-ignore} -->
 
+## Easy profiling
 
-## 1 本地性能分析方法
-
-### 1.1 Easy profiling([文档地址](https://nodejs.org/en/docs/guides/simple-profiling/))
+> [文档地址](https://nodejs.org/en/docs/guides/simple-profiling/)
 
 ```shell
 # 使用 --prof 参数启动服务
@@ -18,7 +18,9 @@ node --prof-process isolate-*.log > processed.txt
 注：processed.txt文件内容，如下图：
   ![image-20210510205958393](images/image-20210510205958393.png)
 
-### 1.2 vscode-js-profile-flame 插件
+## vscode-js-profile-flame
+
+> 在vscode中，安装此插件来分析
 
 1. 配置.vscode/launch.json
 
