@@ -1,2 +1,2 @@
-- [Nodejs](/langs/nodejs/README.md)
+- [Nodejs](#)
     - [本地性能分析](/langs/nodejs/local-profile.md)

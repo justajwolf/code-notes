@@ -1,2 +1,2 @@
-- [Golang](/langs/go/README.md)
+- [Golang](#)
   - [编写第一个go项目](/langs/go/quick-start.md)
