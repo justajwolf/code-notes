@@ -1,0 +1,4 @@
+logs/*
+!logs/README.md
+docker-compose.yaml
+docker
