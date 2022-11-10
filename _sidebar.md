@@ -3,6 +3,7 @@
   - [网络文件系统](/os/nfs.md)
   - [使用 git](/tools/git.md)
   - [免费 cdn](/tools/jsdelivr.md)
+  - [wins用户开发神器 - wsl](/os/wsl.md)
   - [使用 ssh](#)
     - [常见配置](/protocols/ssh/config.md)
     - [常见命令](/protocols/ssh/ssh.md)
