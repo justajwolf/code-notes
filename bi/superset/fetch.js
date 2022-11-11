@@ -35,16 +35,37 @@ const dcUrl = `https://cdn.jsdelivr.net/gh/apache/superset@${version}/docker-com
 const scriptUrl = "https://api.github.com/repos/apache/superset/contents/docker";
 const dcFilename = "docker-compose.yaml";
 (async () => {
-    const scriptInfos = await request(scriptUrl);
-    const dUrls = JSON.parse(scriptInfos).map(info => cdn(info.download_url));
+    const dirJSON = await request(scriptUrl);
+    /** @type any[] */
+    const queue = JSON.parse(dirJSON).map(dir => ((dir["_dirname_"] = "docker"), dir));
+    const dirSet = new Set(["docker"]);
+    const dUrls = [];
+    while (queue.length) {
+        const file = queue.shift();
+        const dirname = file["_dirname_"];
+        const cdnUrl = cdn(file.download_url);
+        if (cdnUrl.length) {
+            if (dirname) {
+                cdnUrl[0] = `${dirname}/${cdnUrl[0]}`;
+                dirSet.add(dirname);
+            }
+            dUrls.push(cdnUrl);
+            continue;
+        }
+        const subDirJSON = await request(file.url);
+        /** @type any[] */
+        const subFiles = JSON.parse(subDirJSON);
+        subFiles?.forEach(subFile => {
+            subFile["_dirname_"] = dirname ? `${dirname}/${file.name}` : file.name;
+            queue.push(subFile);
+        });
+    }
     fs.existsSync(dcFilename) && fs.rmSync(dcFilename);
-    fs.existsSync("docker") && fs.rmSync("docker", { recursive: true });
-    fs.mkdirSync("docker");
-    const tasks = dUrls.map(async ([filename, url]) => {
-        if (!url) return;
-        return saveFiles(`docker/${filename}`, url);
-    });
+    Array.from(dirSet).forEach(dir => {
+        fs.existsSync(dir) && fs.rmSync(dir, { recursive: true });
+        fs.mkdirSync(dir);
+    })
+    const tasks = dUrls.map(async ([filename, url]) => saveFiles(filename, url));
     tasks.push(saveFiles(dcFilename, dcUrl))
     await Promise.all(tasks);
-    console.log("ok");
 })()
