@@ -1,5 +1,7 @@
 # Windows Subsystem for Linux (WSL)
 
+> author: justajwolf
+
 > 此篇内容，会随 wsl 更新，持续维护……
 
 ## 简单介绍
@@ -45,7 +47,11 @@ wsl 是 windows 下的 linux 子系统，于 Windows 10 中的某一个版本开
 
 ## 快速安装
 
-这是[官方安装文档](https://learn.microsoft.com/zh-cn/windows/wsl/install)，下面简单，介绍一下安装步骤。
+- 这里是 [官方安装文档](https://learn.microsoft.com/zh-cn/windows/wsl/install)，介绍 wsl 相关安装步骤和注意事项。
+
+- 这里是 [ubuntu 官方文档](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview)，介绍在 windows 的 wsl 上安装 Ubuntu 的图文步骤。
+
+下面简单，介绍一下安装步骤。
 
 > 关于 wsl 的相关命令，详见`wsl --help`
 
