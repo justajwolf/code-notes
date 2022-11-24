@@ -2,4 +2,4 @@
   - [Notes](#)
     - [起手第一个go项目](/langs/go/quick-start.md)
   - [Tools](#)
-    - [fileserver - 静态文件托管工具](/langs/go/fileserver/README.md)
+    - [fileserver - 静态文件托管工具](/langs/go/fileserver.md)
