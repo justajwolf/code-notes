@@ -1,4 +1,4 @@
-- [Nodejs](/langs/nodejs/README.md)
+- [JS(Nodejs)](/langs/nodejs/README.md)
     - [Notes](#)
-        - [本地性能分析](/langs/nodejs/local-profile.md)
+        - [Nodejs本地性能分析](/langs/nodejs/local-profile.md)
     - [Pkgs](#)
