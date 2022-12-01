@@ -48,7 +48,11 @@ function cdn(url) {
 }
 
 async function saveFiles(path, url) {
-    const res = await request(url, true);
+    const [err, res] = await request(url, true).then(res => [, res]).catch(err => [err]);
+    if (err) {
+        console.error(err);
+        return;
+    }
     return require("fs").promises.writeFile(path, res);
 }
 
