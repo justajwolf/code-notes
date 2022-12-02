@@ -302,3 +302,18 @@ $ echo -e "\. ~/.bash_config_win.sh" >> .bashrc
 $ wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
 $ sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
 ```
+
+### 关于 `占位程序接收到错误数据。 Error code: Wsl/Service/0x800706f7` 问题，进不去`wsl`的解决办法
+
+错误信息如下：
+
+```bash
+占位程序接收到错误数据。
+Error code: Wsl/Service/0x800706f7
+```
+
+解决办法，打开`管理员权限的cmd`，执行如下命令，重置`winsock`，不用重启电脑，完事再执行`wsl`即可。
+
+```bash
+netsh winsock reset
+```
