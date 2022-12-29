@@ -1,9 +1,21 @@
 {
 	"version": "2.0.0",
+	"presentation": {
+		"echo": true,
+		"reveal": "always",
+		"focus": false,
+		"panel": "shared",
+		"showReuseMessage": true,
+		"clear": false
+	},
+	"promptOnClose": true,
+	"isBackground": true,
 	"tasks": [
 		{
 			"type": "shell",
 			"label": "C/C++:build",
+			"group": "build",
+			"problemMatcher": "$gcc",
 			"windows": {
 				"command": "g++.exe",
 				"args": [
@@ -20,24 +32,35 @@
 					"${file}",
 					"-o",
 					"${fileDirname}/${fileBasenameNoExtension}"
-				],
+				]
 			},
 			"osx": {
 				"command": "/usr/bin/clang++",
 				"args": [
 					"-std=c++17",
-        	"-stdlib=libc++",
+					"-stdlib=libc++",
 					"-g",
 					"${file}",
 					"-o",
 					"${fileDirname}/${fileBasenameNoExtension}"
-				],
-			},
-			"options": {
-				"cwd": "${workspaceFolder}/c++"
-			},
-			"problemMatcher": ["$gcc"],
-			"group": "build"
+				]
+			}
+		},
+		{
+			"type": "shell",
+			"label": "C/C++:clean",
+			"group": "build",
+			"command": "rm",
+			"args": [
+				"-rf",
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"windows": {
+				"command": "del",
+				"args": [
+					"${fileDirname}\\${fileBasenameNoExtension}.exe"
+				]
+			}
 		}
 	]
 }

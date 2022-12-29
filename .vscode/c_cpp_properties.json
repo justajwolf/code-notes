@@ -1,42 +1,46 @@
 {
-    "configurations": [
-        {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/c++/**",
-                "${default}"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe",
-            "cStandard": "${default}",
-            "cppStandard": "${default}",
-            "intelliSenseMode": "${default}"
-        },
-        {
-            "name": "Linux",
-            "includePath": ["${workspaceFolder}/langs/cpp/**"],
-            "defines": [],
-            "compilerPath": "/usr/bin/g++",
-            "cStandard": "${default}",
-            "cppStandard": "${default}",
-            "intelliSenseMode": "${default}"
-        },
-        {
-            "name": "Mac",
-            "includePath": ["${workspaceFolder}/c++/**"],
-            "defines": [],
-            "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
-            ],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "${default}",
-            "cppStandard": "${default}",
-            "intelliSenseMode": "${default}"
-        }
-    ],
-    "version": 4
+	"configurations": [
+		{
+			"name": "Win32",
+			"includePath": [
+				"${workspaceFolder}/c++/**",
+				"${default}"
+			],
+			"defines": [
+				"_DEBUG",
+				"UNICODE",
+				"_UNICODE"
+			],
+			"compilerPath": "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe",
+			"cStandard": "${default}",
+			"cppStandard": "${default}",
+			"intelliSenseMode": "${default}"
+		},
+		{
+			"name": "Linux",
+			"includePath": [
+				"${workspaceFolder}/langs/cpp/**"
+			],
+			"defines": [],
+			"compilerPath": "/usr/bin/g++",
+			"cStandard": "${default}",
+			"cppStandard": "${default}",
+			"intelliSenseMode": "${default}"
+		},
+		{
+			"name": "Mac",
+			"includePath": [
+				"${workspaceFolder}/c++/**"
+			],
+			"defines": [],
+			"macFrameworkPath": [
+				"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+			],
+			"compilerPath": "/usr/bin/clang",
+			"cStandard": "${default}",
+			"cppStandard": "${default}",
+			"intelliSenseMode": "${default}"
+		}
+	],
+	"version": 4
 }

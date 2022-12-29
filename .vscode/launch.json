@@ -1,5 +1,5 @@
 {
-	// 使用 IntelliSense 了解相关属性。 
+	// 使用 IntelliSense 了解相关属性。
 	// 悬停以查看现有属性的描述。
 	// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
@@ -9,13 +9,14 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"preLaunchTask": "C/C++:build",
-			"program": "${fileDirname}\\${fileBasenameNoExtension}",
-			"args": [],
+			"postDebugTask": "C/C++:clean",
 			"stopAtEntry": true,
-			"cwd": "${workspaceFolder}/c++",
+			"cwd": "${workspaceFolder}/langs/cpp",
+			"program": "${fileDirname}/${fileBasenameNoExtension}",
 			"environment": [],
 			"externalConsole": false,
-			"internalConsoleOptions":"openOnSessionStart",
+			"launchCompleteCommand": "exec-run",
+			"internalConsoleOptions": "openOnSessionStart",
 			"logging": {
 				"moduleLoad": false,
 				"trace": true
@@ -27,14 +28,20 @@
 					"ignoreFailures": true
 				}
 			],
-			"linux": {
-				"MIMode": "gdb",
-				"miDebuggerPath": "/usr/bin/gdb"
-			},
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb",
 			"osx": {
+				"name": "cpp-debug-single",
+				"type": "cppdbg",
+				"request": "launch",
+				"program": "${fileDirname}/${fileBasenameNoExtension}",
 				"MIMode": "lldb"
 			},
 			"windows": {
+				"name": "cpp-debug-single",
+				"type": "cppdbg",
+				"request": "launch",
+				"program": "${fileDirname}\\${fileBasenameNoExtension}",
 				"MIMode": "gdb",
 				"miDebuggerPath": "gdb.exe"
 			}
@@ -74,10 +81,12 @@
 				"ts-node/register"
 			],
 			"cwd": "${fileDirname}",
-			"args": ["${file}"],
+			"args": [
+				"${file}"
+			],
 			"console": "internalConsole",
 			"outputCapture": "std",
-			"internalConsoleOptions": "neverOpen",
+			"internalConsoleOptions": "neverOpen"
 		}
 	]
 }
