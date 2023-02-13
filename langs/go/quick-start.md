@@ -84,7 +84,7 @@ $ go get [package-path]
 $ git config --local url."git@gitlab.xxx.xx:".insteadOf "https://gitlab.xxx.xxx"
 
 # gitlab，token在gitlab上获取，read权限就可以
-$ git config --local url."https://<gitlab-name>:<gitlab-token>@gitlab.17zuoye.net/".insteadOf "https://gitlab.17zuoye.net/"
+$ git config --local url."https://<gitlab-name>:<gitlab-token>@gitlab.xxx.net/".insteadOf "https://gitlab.xxx.net/"
 
 # github, token在github上获取
 $ git config --local url."https://<githab-token>:x-oauth-basic@github.com/".insteadOf "https://github.com/"
