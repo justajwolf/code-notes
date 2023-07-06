@@ -1,6 +1,7 @@
 syntax = "proto3";
 package test;
 import "msg_type.proto";
+import "google/protobuf/any.proto";
 
 service DetailService {
     rpc GetDetail(ColumnRequest) returns (ColumnResponse);
@@ -38,4 +39,5 @@ message ColumnResponse {
 }
 message ColumnRequest {
     int32 columnid = 1;
+    google.protobuf.Any body = 2;
 }
