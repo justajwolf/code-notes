@@ -5,9 +5,9 @@
  * expect: 当前类型只负责维护本类型需要的泛型类型，不再关心本层哪些类型是泛型，它需要啥子类型，给这些类型一个any的子类型约束
  */
 
-export class Leaf<TI, TV> {
-    id: TI;
-    value: TV;
+export class Leaf<TId, TValue> {
+    id: TId;
+    value: TValue;
 }
 
 export class Node<TI, TLeafId, TLeafV> {
@@ -18,6 +18,18 @@ export class Node<TI, TLeafId, TLeafV> {
 export class Root<TI, TV extends Node<unknown, unknown, unknown>> {
     id: TI;
     value: TV;
+}
+
+class A {
+
+}
+
+export class Root2<TI, TV extends Node<unknown, unknown, unknown>> {
+    id: TI;
+    value: TV;
+    geta(){
+        
+    }
 }
 
 const root = new Root<number, Node<string, string, string>>();
