@@ -10,7 +10,7 @@ volumes:
 services:
     ch-server:
         container_name: ch-server
-        image: clickhouse/clickhouse-server:23.2.3.17
+        image: clickhouse/clickhouse-server:23.8.8.20
         restart: always
         ports:
             - 18123:8123
