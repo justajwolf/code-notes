@@ -1,0 +1,1 @@
+protoc --proto_path=./pbs/protos --go_out=./pbs --go-grpc_out=./pbs ./pbs/protos/*.proto

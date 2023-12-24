@@ -1,0 +1,10 @@
+syntax = "proto3";
+package pbs;
+option go_package = "./;pbs";
+import "enum.proto";
+
+message UserInfo {
+  string message = 1;
+  int32 length = 2;
+  repeated string a = 3;
+}

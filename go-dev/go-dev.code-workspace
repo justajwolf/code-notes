@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "✨ root",
+			"path": "."
+		},
+		{
+			"path": "go-basic"
+		},
+		{
+			"path": "web-service-gin"
+		},
+		{
+			"path": "ac-code"
+		},
+		{
+			"path": "docs"
+		}
+	],
+	"settings": {}
+}

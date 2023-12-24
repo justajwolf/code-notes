@@ -1,0 +1,18 @@
+syntax = "proto3";
+package pbs;
+option go_package = "./;pbs";
+
+service HelloServer {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc GetHelloMsg (HelloRequest) returns (HelloMessage);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+message HelloReply {
+  string message = 1;
+}
+message HelloMessage {
+  string msg = 1;
+}

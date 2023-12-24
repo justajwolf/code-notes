@@ -1,0 +1,4 @@
+# .vscode
+vendor
+/practices/**/*/*.png
+/**/*/*.pb.go
