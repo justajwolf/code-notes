@@ -16,7 +16,7 @@
 
 - 给用户赋予 root 权限
 
-  - sudo usermod -g root jwolf
+  - sudo usermod -aG root jwolf
 
 - 给 hosts 添加写权限
 
@@ -201,6 +201,18 @@
   - apt search [keyword]
 
 ## **docker**
+
+### ubuntu安装
+
+脚本快速安装
+- curl -fsSL https://get.docker.com -o get-docker.sh
+- sudo sh get-docker.sh
+
+手动尝试命令
+- sudo systemctl enable docker.service
+- sudo systemctl enable containerd.service
+- sudo usermod -aG docker $USER
+- newgrp docker
 
 ### 镜像导入
 
