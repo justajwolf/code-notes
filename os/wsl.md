@@ -91,7 +91,7 @@ wsl 是 windows 下的 linux 子系统，于 Windows 10 中的某一个版本开
 
 ## 开发环境配置
 
-### apt 源替换国内源([清华镜像站](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/))，以及安装常见工具包。
+### apt 源替换国内源([清华镜像站](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/))，以及安装常见工具包
 
 > 这里要是 apt 安装包不慢，就不建议换其它镜像源了，默认镜像源的包会随系统更新，及时给出升级的，有些包升级，加速镜像源，不一定会有。
 
@@ -121,9 +121,11 @@ $ sudo apt install g++
 
 > 这里推荐使用 nvm，github 相关的托管文件链接，可以使用[jsdelivr](https://www.jsdelivr.com/)的 cdn 转一下方便快速访问，[详见](https://www.jsdelivr.com/github)。
 
+nvm安装指南：[Install & Update Script](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+
 ```bash
 # 这是用jsdelivr转换之后的url
-$ curl -o- https://cdn.jsdelivr.net/gh/nvm-sh/nvm@v0.39.1/install.sh | bash
+$ curl -o- https://cdn.jsdelivr.net/gh/nvm-sh/nvm@v0.39.7/install.sh | bash
 
 # 注意在~/.bashrc文件最后，加上这个环境变量，nvm下载nodejs的阿里镜像地址，nodejs官方源国内有时太慢
 $ export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node
@@ -177,13 +179,13 @@ $ docker info
 
 > 关于`docker pull`私有镜像，需编辑 ~/.docker/config.json  加上如下配置：
 
-```
+```json
 {
-	"auths": {
-		"registry.xxx.com": {
-			"auth": "此处是私有访问token"
-		}
-	}
+ "auths": {
+  "registry.xxx.com": {
+   "auth": "此处是私有访问token"
+  }
+ }
 }
 ```
 
@@ -192,11 +194,11 @@ $ docker info
 > 以下是快捷安装时，顺序执行的命令，更多[详见](https://www.mongodb.com/docs/mongodb-shell/install/)。
 
 ```bash
-$ sudo apt-get install gnupg
-$ wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-6.0.asc
-$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-$ sudo apt-get update
-$ sudo apt-get install -y mongodb-mongosh
+sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-6.0.asc
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-mongosh
 ```
 
 ## wsl 与 windows 相互访问配置
@@ -226,17 +228,21 @@ $ sudo chmod g+w /etc/hosts
 ```bash
 # 创建脚本
 $ tee ~/bash_config_wsl.sh <<-'EOF'
-## 更新配置wsl下的hosts映射脚本
-winhost=$(echo $(ip route | grep default | awk '{print $3}') winhost)
+## 更新配置wsl下的hosts映射
+# 先给hosts添加写权限
+# sudo chmod a+w hosts
+winip=$(ip route | grep default | awk '{print $3}')
+winhost=$(echo $winip winhost)
 echo $winhost
 wincontent=$(cat /etc/hosts | grep winhost)
-if [ "$wincontent" ]
-then
-  cat /etc/hosts > /tmp/tmpwinhost
-  sed -i "s/$wincontent/$winhost/g" /tmp/tmpwinhost
-  cat /tmp/tmpwinhost > /etc/hosts
+if [ "$wincontent" ]; then
+    if [ "$wincontent" != "$winhost" ]; then
+        cat /etc/hosts >/tmp/tmpwinhost
+        sed -i "s/$wincontent/$winhost/g" /tmp/tmpwinhost
+        cat /tmp/tmpwinhost >/etc/hosts
+    fi 
 else
-  echo -e "\n$winhost" >> /etc/hosts
+    echo -e "\n$winhost" >>/etc/hosts
 fi
 EOF
 
@@ -259,30 +265,24 @@ $ tee ~/bash_config_win.sh <<-'EOF'
 wslip=$(echo $(ip addr show eth0 | grep inet | grep eth0 | cut -f 6 -d ' ' | cut -f 1 -d '/'))
 wslhost=$(echo $wslip wslhost)
 echo $wslhost
-
-# 临时中间文件
 tmpwslhost="/tmp/tmpwslhost"
-if [ ! -e $tmpwslhost ]
-then
-  echo $wslip > /tmp/tmpwslhost
+if [ ! -e $tmpwslhost ]; then
+    echo $wslip >/tmp/tmpwslhost
 fi
+lastwslhost=$(echo $(sed -n '1p' $tmpwslhost))
+if [ "$lastwslhost" ]; then
+    if [ $wslip != $lastwslhost ]; then
+        # 更新wsl的hosts配置
+        cat /etc/hosts >/tmp/tmpwinhost
+        sed -i "s/$lastwslhost/127.0.0.1/g" /tmp/tmpwinhost
+        cat /tmp/tmpwinhost >/etc/hosts
+        echo $wslip >/tmp/tmpwslhost
 
-lastwslhost=$(echo $(sed -n '1p' /tmp/tmpwslhost))
-if [ "$lastwslhost" ]
-then
-  if [ $wslip != $lastwslhost ]
-  then
-    # 更新wsl的hosts配置
-    cat /etc/hosts > /tmp/tmpwinhost
-    sed -i "s/$lastwslhost/127.0.0.1/g" /tmp/tmpwinhost
-    cat /tmp/tmpwinhost > /etc/hosts
-    echo $wslip > /tmp/tmpwslhost
-
-    # 更新windows的hosts
-    cat /mnt/c/windows/system32/drivers/etc/hosts > /tmp/templastwinhosts
-    sed -i "s/$lastwslhost/$wslip/g" /tmp/templastwinhosts
-    cat /tmp/templastwinhosts > /mnt/c/windows/system32/drivers/etc/hosts
-  fi
+        # 更新windows的hosts
+        cat /mnt/c/windows/system32/drivers/etc/hosts >/tmp/templastwinhosts
+        sed -i "s/$lastwslhost/$wslip/g" /tmp/templastwinhosts
+        cat /tmp/templastwinhosts >/mnt/c/windows/system32/drivers/etc/hosts
+    fi
 fi
 EOF
 
@@ -297,9 +297,11 @@ $ echo -e "\. ~/.bash_config_win.sh" >> .bashrc
 > 使用 mongo 时，跑测试时出现，[这是官方说明](https://www.mongodb.com/community/forums/t/ubuntu-22-04-and-mssing-libcrypto-so-1-1/168253)，这是 ubuntu 22 的软件包库还没支持。
 > 可以使用如下方式，手动安装
 
+点击[https://mirror.iranserver.com/ubuntu/pool/main/o/openssl](https://mirror.iranserver.com/ubuntu/pool/main/o/openssl)，搜索`libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb`，右键复制下载地址
+
 ```bash
 ## 手动安装缺失的libcrypto.so.1.1
-$ wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
+$ wget https://mirror.iranserver.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
 $ sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb
 ```
 
