@@ -1,7 +1,7 @@
 - [Home](/README.md)
   - [日常终端命令](/os/shells.md)
   - [操作系统 > 启动引导](/os/bootloader.md)
-  - [在ubuntu/wsl2中，构建electron](/os/x11.md)
+  - [X11转发 > 远程构建Electron应用](/os/x11.md)
   - [网络文件系统](/os/nfs.md)
   - [使用 git](/tools/git.md)
   - [免费 cdn](/tools/jsdelivr.md)
