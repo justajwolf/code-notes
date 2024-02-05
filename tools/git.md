@@ -2,7 +2,7 @@
 
 ## 配置命令（全局/本地配置）
 
-1. 常见配置
+### 常见配置
 
    ```bash
    # 查看当前git配置(local覆盖glbal之后的配置)
@@ -30,7 +30,7 @@
    git config --global core.editor vim
    ```
 
-2. 代理配置
+### 代理配置
 
    ```bash
    # 全局设置http请求github.com的socks5代理
@@ -40,7 +40,7 @@
    git config --global https.https://github.com.proxy socks5://<ip>:<port>
    ```
 
-3. 文件权限
+### 文件权限
 
    ```bash
    # 查看当前文件权限
@@ -52,7 +52,7 @@
 
 ## git 调试变量（跟踪命令执行 log）
 
-1. 查看 git 命令执行 log
+### 查看 git 命令执行 log
 
    ```bash
    # 用于查看和定位命令长时间卡住问题
@@ -61,7 +61,7 @@
 
 ## 常用基础命令（工作场景）
 
-1. 远程仓库 to 本地仓库
+### 远程仓库 to 本地仓库
 
    ```bash
    # 克隆仓库 默认分支
@@ -77,7 +77,7 @@
    git remote update origin --prune
    ```
 
-2. 删除分支
+### 删除分支
 
    ```bash
    # 删除本地分支
@@ -89,7 +89,7 @@
    git push origin --delete <branchName>
    ```
 
-3. 远程分支 <=> 本地分支
+### 远程分支 <=> 本地分支
 
    ```bash
    # 建议本地分支名 同 远程分支名保持一致
@@ -113,12 +113,6 @@
    # 拉取远程分支代码(指定远程分支名)
    git pull origin <branchName>
 
-   # 合并指定分支到当前分支
-   git merge <branchName>
-
-   # 取消当前合并，合并中止(当合并或者冲突解决混乱时，中止本次合并，恢复到合并前的状态，以便于重新合并)
-   git merge --abort
-
    # 添加代码到工作区(当前目录/指定文件)
    git add .
    git add <filename>
@@ -136,7 +130,43 @@
    git push origin <branchName>
    ```
 
-4. 版本回退
+### 整合分支(merge/rebase/cherry-pick)
+
+#### merge
+
+无论有没有冲突，都将产生一条新的commit记录，用于将目标分支最新进度，合并到当前分支
+
+```bash
+# 合并指定分支到当前分支
+git merge <branchName>
+
+# merge时过程中，主动中止(当合并或者冲突解决混乱时，中止本次合并，恢复到合并前的状态，以便于重新合并)
+git merge --abort
+```
+
+#### rebase
+
+当没有冲突时，可以不产生新的commit记录，将目标分支最新进度，并入到当前分支
+
+```bash
+# 重新计算对比变更，将目标分支作为当前分支的base分支，并将变更commit并入到当前分支
+git rebase <branchName>
+
+# rebase时过程中，主动中止(当rebase方式合并时，出现冲突解决混乱时，中止本次合并，恢复到合并前的状态，以便于重新合并)
+git rebase --abort
+```
+
+#### cherry-pick
+
+```bash
+# 从过去得commit中，pick出sha的代码修改，并自定提交到，当前分支
+git cherry-pick <sha>
+
+# 从过去得commit中，pick出sha的代码修改，作为当前分支的改动
+git cherry-pick <sha> -n
+```
+
+### 版本回退
 
    ```bash
    # 本地 回退到 上次提交 (撤回修改代码到未提交状态)
@@ -150,7 +180,7 @@
    git reset --hard <commitId>
    ```
 
-5. 本地常见操作
+### 本地常见操作
 
    ```bash
    # 查看提交记录（常见用于reset时候，获取commitId）
@@ -179,9 +209,9 @@
    git checkout <commitId> <fileName>
    ```
 
-6. 常见操作扩展
+### 常见操作扩展
 
-   - 修改上一次提交信息(previous commit), [详见 2.4](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Thingss)
+- 修改上一次提交信息(previous commit), [详见 2.4](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Thingss)
 
      ```bash
      # 修改上一次提交msg
@@ -194,7 +224,8 @@
 
 ## 管道命令（写脚本，写库等场景）
 
-1. rev-parse
+### rev-parse
+
    ```bash
    # 查看当前位置相对于.git目录的深度
    git rev-parse --show-cdup
