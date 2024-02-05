@@ -297,7 +297,7 @@ $ echo -e "\. ~/.bash_config_win.sh" >> .bashrc
 > 使用 mongo 时，跑测试时出现，[这是官方说明](https://www.mongodb.com/community/forums/t/ubuntu-22-04-and-mssing-libcrypto-so-1-1/168253)，这是 ubuntu 22 的软件包库还没支持。
 > 可以使用如下方式，手动安装
 
-点击[https://mirror.iranserver.com/ubuntu/pool/main/o/openssl](https://mirror.iranserver.com/ubuntu/pool/main/o/openssl)，搜索`libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb`，右键复制下载地址
+戳这 => [(https://mirror.iranserver.com/ubuntu/pool/main/o/openssl)](https://mirror.iranserver.com/ubuntu/pool/main/o/openssl)，搜索`libssl1.1_1.1.1l-1ubuntu1.2_amd64.deb`，右键复制下载地址
 
 ```bash
 ## 手动安装缺失的libcrypto.so.1.1
