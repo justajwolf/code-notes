@@ -1,82 +1,94 @@
 {
-  // 使用 IntelliSense 了解相关属性。
-  // 悬停以查看现有属性的描述。
-  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "cpp-debug-single",
-      "type": "cppdbg",
-      "request": "launch",
-      "preLaunchTask": "C/C++:build",
-      "postDebugTask": "C/C++:clean",
-      "stopAtEntry": true,
-      "cwd": "${workspaceFolder}/langs/cpp",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "environment": [],
-      "externalConsole": false,
-      "launchCompleteCommand": "exec-run",
-      "internalConsoleOptions": "openOnSessionStart",
-      "logging": {
-        "moduleLoad": false,
-        "trace": true
-      },
-      "setupCommands": [
+    // 使用 IntelliSense 了解相关属性。
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
         {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "cpp-debug-single",
+            "type": "cppdbg",
+            "request": "launch",
+            "preLaunchTask": "C/C++:build",
+            "postDebugTask": "C/C++:clean",
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/langs/cpp",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "environment": [],
+            "externalConsole": false,
+            "launchCompleteCommand": "exec-run",
+            "internalConsoleOptions": "openOnSessionStart",
+            "logging": {
+                "moduleLoad": false,
+                "trace": true
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "osx": {
+                "name": "cpp-debug-single",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${fileDirname}/${fileBasenameNoExtension}",
+                "MIMode": "lldb"
+            },
+            "windows": {
+                "name": "cpp-debug-single",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${fileDirname}\\${fileBasenameNoExtension}",
+                "MIMode": "gdb",
+                "miDebuggerPath": "gdb.exe"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "js-debug-single",
+            "program": "${file}",
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "internalConsoleOptions": "neverOpen",
+            "stopOnEntry": true,
+            "trace": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "py-debug-single",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "ts-debug-single",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "TS_NODE_PROJECT": "tsconfig.json"
+            },
+            "runtimeArgs": [
+                "--inspect",
+                "-r",
+                "ts-node/register"
+            ],
+            "cwd": "${fileDirname}",
+            "args": [
+                "${file}"
+            ],
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "internalConsoleOptions": "neverOpen"
         }
-      ],
-      "MIMode": "gdb",
-      "miDebuggerPath": "/usr/bin/gdb",
-      "osx": {
-        "name": "cpp-debug-single",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${fileDirname}/${fileBasenameNoExtension}",
-        "MIMode": "lldb"
-      },
-      "windows": {
-        "name": "cpp-debug-single",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${fileDirname}\\${fileBasenameNoExtension}",
-        "MIMode": "gdb",
-        "miDebuggerPath": "gdb.exe"
-      }
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "js-debug-single",
-      "program": "${file}",
-      "console": "internalConsole",
-      "outputCapture": "std",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "name": "py-debug-single",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "console": "internalConsole"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "ts-debug-single",
-      "skipFiles": ["<node_internals>/**"],
-      "env": {
-        "TS_NODE_PROJECT": "tsconfig.json"
-      },
-      "runtimeArgs": ["--inspect", "-r", "ts-node/register"],
-      "cwd": "${fileDirname}",
-      "args": ["${file}"],
-      "console": "internalConsole",
-      "outputCapture": "std",
-      "internalConsoleOptions": "neverOpen"
-    }
-  ]
+    ]
 }

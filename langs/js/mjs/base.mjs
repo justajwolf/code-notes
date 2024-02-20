@@ -1,0 +1,1 @@
+export const a = { v: 1 };
