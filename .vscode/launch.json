@@ -31,16 +31,10 @@
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb",
             "osx": {
-                "name": "cpp-debug-single",
-                "type": "cppdbg",
-                "request": "launch",
                 "program": "${fileDirname}/${fileBasenameNoExtension}",
                 "MIMode": "lldb"
             },
             "windows": {
-                "name": "cpp-debug-single",
-                "type": "cppdbg",
-                "request": "launch",
                 "program": "${fileDirname}\\${fileBasenameNoExtension}",
                 "MIMode": "gdb",
                 "miDebuggerPath": "gdb.exe"
