@@ -19,7 +19,7 @@
             "internalConsoleOptions": "openOnSessionStart",
             "logging": {
                 "moduleLoad": false,
-                "trace": true
+                "trace": false
             },
             "setupCommands": [
                 {

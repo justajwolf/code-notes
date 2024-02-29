@@ -8,8 +8,9 @@
 int main()
 {
     static const volatile char *sentinel = POSTJECT_SENTINEL_FUSE ":0";
-    auto r = sentinel[sizeof(POSTJECT_SENTINEL_FUSE)] == '1';
-
+    auto len = sizeof(POSTJECT_SENTINEL_FUSE);
+    std::cout << sentinel[len] << std::endl;
+    auto r = sentinel[len] == '1';
     std::cout << r << std::endl;
     return 0;
 }
