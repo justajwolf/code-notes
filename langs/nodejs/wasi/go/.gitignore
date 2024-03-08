@@ -1,0 +1,4 @@
+*.wasm
+*.wat
+wasm_exec.js
+wasm_exec_node.js

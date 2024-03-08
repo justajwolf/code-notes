@@ -13,3 +13,4 @@
 !/lang/cpp/**/*.cpp
 !/lang/cpp/**/*.md
 !/lang/cpp/**/*.txt
+/go.mod
