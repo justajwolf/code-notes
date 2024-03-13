@@ -1,8 +1,11 @@
 {
-  "extends": "../../typescript/tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist"
-  },
-  "include": ["*.ts", "**/*.ts"]
+    "extends": "../../ts/tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        // "outDir": "./dist"
+    },
+    "include": [
+        "*.ts",
+        "**/*.ts"
+    ]
 }
