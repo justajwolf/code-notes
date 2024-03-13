@@ -69,13 +69,9 @@
                 "<node_internals>/**"
             ],
             "env": {
-                "TS_NODE_PROJECT": "tsconfig.json"
+                "TS_NODE_PROJECT": "${fileDirname}/tsconfig.json"
             },
-            "runtimeArgs": [
-                "--inspect",
-                "-r",
-                "ts-node/register"
-            ],
+            "runtimeExecutable": "ts-node",
             "cwd": "${fileDirname}",
             "args": [
                 "${file}"
