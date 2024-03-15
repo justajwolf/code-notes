@@ -1,0 +1,27 @@
+<!-- server第一次write数据：pagelet -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">hello</div>
+</body>
+
+<script>
+    window['app'] = document.querySelector("#app");
+</script>
+
+</html>
+
+<!-- server第二次write数据：pagelet -->
+<script>
+    setTimeout((app) => {
+        app.innerHTML += ` ${Date.now()}(这是脚本动态追加的时间)`
+    }, 1000, window['app'])
+</script>
+
+<!-- server结束write，关闭此次http请求 -->
