@@ -6,5 +6,5 @@ const server = http.createServer().listen(8080)
         res.end(`from pid ${process.pid}: ${utils.getLocalTimeString()}`)
     })
     .on("listening", () => {
-        console.log(`subprocess pid ${process.pid} is listening ${JSON.stringify(server.address())}`);
+        console.log(`sub pid ${process.pid} is listening ${JSON.stringify(server.address())}`);
     });
