@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/justajwolf/go-dev/go-basic/attempt"
 	"github.com/justajwolf/go-dev/web-service-gin/albums"
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
