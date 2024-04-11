@@ -18,7 +18,7 @@ const wasi = new WASI({
 /**
  * 加载 wasm 文件，也可将文件，以 data-url 的形式(base64)，嵌入到代码中
  */
-const wasmFileBuf = await fs.readFile(new URL("../go/main.wasm", import.meta.url));
+const wasmFileBuf = await fs.readFile(new URL("./lexer.wasm", import.meta.url));
 
 /**
  * WebAssembly为全局对象，编译wasm文件为WebAssembly模块

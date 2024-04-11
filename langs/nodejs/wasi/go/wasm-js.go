@@ -3,17 +3,18 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"syscall/js"
 )
 
 func main() {
-	fmt.Println("Hello, WebAssembly!")
-
 	modname := os.Args[0]
-	fmt.Println(modname)
-	js.Global().Get(modname).Set("add", js.FuncOf(Add))
+
+	obj := make(map[string]interface{})
+	obj["name"] = modname
+	obj["add"] = js.FuncOf(Add)
+
+	js.Global().Set(modname, js.ValueOf(obj))
 
 	select {}
 }

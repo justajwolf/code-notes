@@ -6,10 +6,10 @@
 cd node
 
 # 拉取js的lexer wasm实现
-./configure.sh
+make configure
 
 # 执行demo
-node wasi.mjs
+make run
 ```
 
 ## nodejs 执行 go 编写 wasm 模块 初探
@@ -18,8 +18,8 @@ node wasi.mjs
 cd go
 
 # 拉去依赖文件
-./configure.sh
+make configure
 
 # 执行demo
-node wasi.js
+make run-node
 ```
