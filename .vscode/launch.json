@@ -47,7 +47,10 @@
             "program": "${file}",
             "console": "internalConsole",
             "outputCapture": "std",
-            "runtimeArgs": ["--experimental-wasm-modules"],
+            "runtimeArgs": [
+                "--experimental-wasm-modules",
+                "--experimental-network-imports"
+            ],
             "internalConsoleOptions": "neverOpen",
             "stopOnEntry": false,
             "trace": true,

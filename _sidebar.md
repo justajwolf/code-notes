@@ -4,6 +4,7 @@
   - [系统启动引导 > UEFI/BIOS](/os/bootloader.md)
   - [X11转发 > 远程构建Electron应用](/os/x11.md)
   - [WebAssembly 初探](/langs/nodejs/wasi/README.md)
+  - [Nodejs 本地性能分析](/langs/nodejs/local-profile.md)
   - [WSL > Windows兼顾生活&开发的神器](/os/wsl.md)
   - [GitHub问题 > 访问/加速](/tools/github.md)
   - [日常操作 > Shell](/os/shells.md)

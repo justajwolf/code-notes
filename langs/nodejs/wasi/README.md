@@ -1,28 +1,28 @@
 # WebAssembly => wasm/wat/wit/wasi
 
-从 `node18` 开始，看 node 的更新，以及查看部分原生模块和 loader 代码，能明显的发现 `cjs` 正在加速成为 legacy，新品 `esm` 正在成为主流，甚至以后彻底取代 `cjs。`
+从 `node18` 开始，看 node 的更新，以及查看部分原生模块和 loader 代码，能明显的发现 `cjs` 正在加速成为 legacy，新品 `esm` 正在成为主流，甚至以后彻底取代 `cjs`。
 
 前段时间，去了解下 `esm` 模块的具体加载实现，这块就不具体详细展开了。
 
 通过 `import` 和 `from` 关键字(个人理解，像是语法糖，因为还提供 `import()` 动态函数)，在解析编译时处理导入的模块，我们也可以在运行时，使用 `import()` 异步函数去按需加载模块。
 
-在 `esm` 的 loader 中，有在使用 `wasm` 去解析 cjs 模块代码，提取 exports 的 keys，用于兼容cjs模块，[见源码位置](https://github.com/nodejs/node/blob/main/lib/internal/modules/esm/translators.js#L386)。
+在 `esm` 的 loader 中，有在使用 `wasm` 去解析 `cjs` 模块代码，提取 `exports` 的 `keys`，用于兼容 `cjs` 模块，[见源码位置](https://github.com/nodejs/node/blob/main/lib/internal/modules/esm/translators.js#L386)。
 
 这里的 wasm 来自一个官方提供的包 `cjs-module-lexer`，在 `node` 目录 `/deps/cjs-module-lexer` 下。
 
 在这之前，也一直没咋关注过 `wasm` 和 `node` 的 `wasi`，借此契机，好好了解一下。
 
-本篇分享，围绕 `cjs-module-lexer` 包示例，展开探索，去看看 `wasm` 当前情况，以及 如何 在 node 和 浏览器中接入和使用。
+本篇分享，围绕 `cjs-module-lexer` 包示例，展开探索，去看看 `wasm` 当前情况，以及 如何 在 `node` 和 浏览器中接入和使用。
 
 ## [cjs-module-lexer](https://github.com/nodejs/cjs-module-lexer)
 
 这里简单介绍一下这个包。
 
-这是一个 js 语法分词器，对js模块进行分词，按照 cjs 的规则，提取出来，所有 exports 上的 keys，以及间接导出的模块的名。
+这是一个 `js` 语法分词器，对 `js` 模块进行分词，按照 `cjs` 的规则，提取出来，所有 `exports` 上的 `keys`，以及间接导出的模块的名。
 
 这里，提供了两个版本的实现：
 
-- 纯js的实现，为了兼容不支持 `WebAssembly` 的运行时。
+- 纯 `js` 的实现，为了兼容不支持 `WebAssembly` 的运行时。
 
 - 核心由 c 来实现，编译成 wasm 格式，以 `data:url` 形式，嵌入到了 js 文件中，最终在 js 代码中，借助 `WebAssembly` api 去接入。
 
@@ -78,9 +78,9 @@
 
     - `官方文档的 js api 示例`，[详见](https://webassembly.org/getting-started/js-api/)。
 
-  - 浏览器以外，有些语言专门提供了 `wasi（WebAssembly System Interface）`, 可以直接使用提供的 wasi，与该语言进行交互。
+  - 浏览器以外，有些语言实现了 `wasi`, 可以使用相应api，去集成 `wasm`。
 
-- 如何编写 `WebAssembly` 模块(wasm) ?
+- 如何编写 `WebAssembly` 模块(wasm)?
 
   - `WebAssembly` 模块，提供有 text 格式，可纯手写，编写质感有点麻，[语法和文档见](https://webassembly.github.io/spec/core/text/index.html)。
 
@@ -156,19 +156,159 @@
 
 ## Nodejs 下 wasm 尝试
 
-### 使用 wasi 接入 wasm 初探
+### esm 支持 import wasm
 
-```shell
-cd node
+关于 esm 支持加载 wasm 的扩展，[参见源码](https://github.com/nodejs/node/blob/main/lib/internal/modules/esm/translators.js#L513)。
 
-# 拉取js的lexer wasm实现
-make configure
+关于使用加载 `wasm` 模块，需要使用 实验性flag，如下：
 
-# 执行demo
-make run
+- `--experimental-wasm-modules`，开启支持 `wasm` 模块支持，[参见源码](https://github.com/nodejs/node/blob/main/lib/internal/modules/esm/formats.js#L10,L22)。
+
+- `--experimental-network-imports`，开启支持 网络url 形式模块支持，[参见源码](https://github.com/nodejs/node/blob/main/lib/internal/modules/esm/load.js#L54,L62)。
+
+下面我们展示一个demo示例：
+
+创建 `import-wasm.mjs` 文件，内容如下两种方式：
+
+1.使用 `data:url` 方式
+
+```ts
+// node --experimental-wasm-modules --experimental-network-imports import-wasm.mjs
+import * as lexer from "https://cdn.jsdelivr.net/gh/nodejs/cjs-module-lexer@main/lib/lexer.wasm";
+console.log(lexer);
 ```
 
-### 使用 go 编写 wasm 模块 初探
+2.使用 `file:` 方式
+
+> 提前下载 `lexer.wasm` 到本地
+
+```ts
+// node --experimental-wasm-modules import-wasm.mjs
+import * as lexer from "./lexer.wasm";
+console.log(lexer);
+```
+
+打印结果：
+
+```shell
+$ node --experimental-wasm-modules import-wasm.mjs
+(node:97182) ExperimentalWarning: Importing WebAssembly modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[Module: null prototype] {
+  __heap_base: Global [WebAssembly.Global] {},
+  e: [Function: 1],
+  ee: [Function: 3],
+  es: [Function: 2],
+  memory: Memory [WebAssembly.Memory] {},
+  parseCJS: [Function: 15],
+  re: [Function: 8],
+  ree: [Function: 5],
+  res: [Function: 4],
+  rre: [Function: 9],
+  ru: [Function: 10],
+  sa: [Function: 0],
+  ue: [Function: 7],
+  us: [Function: 6]
+}
+```
+
+### 使用 wasi 接入 wasm
+
+```ts
+import { WASI } from 'wasi';
+import fs from 'node:fs/promises';
+import process from 'node:process';
+
+/**
+ * 利用 nodejs 原生提供 wasi 接口，为wasm构建 global 全局对象，也就是下面的 wasi.getImportObject() 返回的对象
+ */
+const wasi = new WASI({
+    version: 'preview1',
+    args: process.argv,
+    env: process.env,
+    preopens: {
+        '/': import.meta.dirname,
+    },
+});
+
+
+/**
+ * 需要加载的 wasm 文件，也可将文件，以 data-url 的形式(base64)，嵌入到js代码中
+ */
+const wasmFileBuf = await fs.readFile(new URL("./lexer.wasm", import.meta.url));
+
+/**
+ * WebAssembly为全局对象，编译wasm文件为WebAssembly模块
+ */
+const wasmModule = await WebAssembly.compile(wasmFileBuf);
+
+// @ts-ignore
+// 实例化 WebAssembly 模块 为 WebAssembly.Instance
+const wasmIns = await WebAssembly.instantiate(wasmModule, wasi.getImportObject());
+
+// wasm 没有 export _start()/_initialize() 函数，执行start会报错
+// wasi.start(wasmIns);
+
+// exports 即为 wasm暴露的api
+console.log(wasmIns.exports);
+
+// wasiImport 为 nodejs 为 wasm 构建的global对象
+// wasi.getImportObject() 等价于 { wasi_snapshot_preview1: wasi.wasiImport }
+console.log(wasi.wasiImport);
+```
+
+### 使用 go 编写的 wasm 模块
+
+[demo代码地址](https://github.com/justajwolf/code-notes/tree/master/langs/nodejs/wasi/go)
+
+```go
+//go:build js && wasm
+
+package main
+
+import (
+ "os"
+ "syscall/js"
+)
+
+func main() {
+ modname := os.Args[0]
+
+ done := make(chan bool, 0)
+
+ mod := make(map[string]interface{})
+ // 挂载 模块名
+ mod["name"] = modname
+ // 挂载 _exit 函数，显示挂载，用于js退出时，释放当前模块，否则js这个库会暴力使用 死锁结束
+ mod["_exit"] = js.FuncOf(func(this js.Value, i []js.Value) interface{} {
+  done <- true
+  return 0
+ })
+
+ // 挂载 其它业务函数
+ mount(mod)
+
+ js.Global().Set(modname, js.ValueOf(mod))
+
+ // fmt.Println("mod<" + modname + "> has exported.")
+
+ <-done
+
+ // fmt.Println("mod<" + modname + "> has released.")
+}
+
+func mount(mod map[string]interface{}) {
+ // 挂载 add 函数
+ mod["add"] = js.FuncOf(Add)
+}
+
+func Add(this js.Value, i []js.Value) interface{} {
+ return i[0].Int() + i[1].Int()
+}
+
+```
+
+执行 demo 命令
 
 ```shell
 cd go
@@ -181,3 +321,31 @@ make run-node
 ```
 
 ## 总结
+
+基本上大家，都清楚 nodejs 是由 v8 和 c++ 组成的，node的模块主要分三种：
+
+- 用户模块：
+  
+  - .json
+  
+  - .js
+
+- 原生模块：
+  
+  - 纯 js 模块
+  
+  - js wrapper(对外暴露的c++模块)
+  
+  - 纯 c++ 模块(内置模块)
+
+- c++ 扩展模块
+
+  - .node
+
+对于性能而言，大家可能想到的都是写 c++ 扩展模块，确实这是一种方式。
+
+现在又多了一种方式 `wasm` 模块的形式，也就是第 4 种模块方式。
+
+esm 模块支持这种方式貌似也很久了，从文档上看 `--experimental-wasm-modules` 这个flag 是从是`node12.3.0`开始支持的。
+
+相比于直接写 c++ 扩展的学习和开发成本，去编写 `wasm` 模块，在容易成度上，似乎会更可观一些，并且 `wasm` 也有很高的移植性和复用性。
