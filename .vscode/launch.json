@@ -47,6 +47,7 @@
             "program": "${file}",
             "console": "internalConsole",
             "outputCapture": "std",
+            "runtimeArgs": ["--experimental-wasm-modules"],
             "internalConsoleOptions": "neverOpen",
             "stopOnEntry": false,
             "trace": true,
