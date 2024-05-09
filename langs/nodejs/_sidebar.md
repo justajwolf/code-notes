@@ -1,5 +1,0 @@
-- [JS(Nodejs)](/langs/nodejs/README.md)
-    - [Notes](#)
-        - [Nodejs 本地性能分析](/langs/nodejs/local-profile.md)
-        - [WebAssembly 初探](/langs/nodejs/wasi/README.md)
-    - [Pkgs](#)
