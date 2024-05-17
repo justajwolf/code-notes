@@ -1,7 +1,8 @@
 {
     "name": "frags-ts",
     "scripts": {
-        "build": "rm -rf ./dist && tsc --build"
+        "build": "rm -rf ./dist && tsc --build",
+        "build:decorator": "tsc --build decorator && tsc --declaration decorator/new.ts"
     },
     "dependencies": {
         "rxjs": "7.8.1",

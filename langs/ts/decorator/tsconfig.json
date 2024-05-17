@@ -1,13 +1,14 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "../tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "outDir": "./"
+        "outDir": "./",
+        "importHelpers": false,
     },
     "include": [
         "**/*.ts"
     ],
     "exclude": [
-        "decorater/new.ts"
+        "new.ts"
     ]
 }
