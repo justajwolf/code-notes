@@ -1,5 +1,12 @@
 # 彻底弄懂 CommonJS、ES Module 以及 ESM 在 TypeScript 中的应用
 
+>|||
+>|:---|:---|
+>|author|justajwolf|
+>|timez|  UTC + 08:00|
+>|ctime|  2024-06-14 17:55:00|
+>|utime|  2024-06-14 17:55:00|
+
 ## 从 CommonJS 到 ES Module的迁徙之路
 
 ### cjs
