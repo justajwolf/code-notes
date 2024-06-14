@@ -9,7 +9,8 @@ function loggedMethod(originalMethod: any, _context: any) {
 
     return replacementMethod;
 }
-
+// @ts-ignore
+Symbol["metadata"] ??= "aaaaaaaaaaaaaaaaaa"
 class Person {
     name: string;
     constructor(name: string) {
@@ -17,13 +18,20 @@ class Person {
     }
 
     @loggedMethod
-    greet() {
+    private greet(a: string) {
         console.log(`Hello, my name is ${this.name}.`);
+    }
+
+    @loggedMethod
+    hello() {
+        this.greet("aaaaa");
     }
 }
 
 const p = new Person("Ron");
-p.greet();
+p.hello();
+
+console.log(Person["aaaaaaaaaaaaaaaaaa"])
 
 // Output:
 //
