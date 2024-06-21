@@ -1,0 +1,5 @@
+# 忽略本地测试和临时文件
+test.js
+test.[cm]js
+tmp.js
+tmp.[cm]js
