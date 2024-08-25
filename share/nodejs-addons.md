@@ -5,7 +5,7 @@
 >|author|justajwolf|
 >|timez|  UTC + 08:00|
 >|ctime|  2024-07-29 10:11:00|
->|utime|  2024-08-13 22:32:00|
+>|utime|  2024-08-25 11:38:00|
 
 ## 1 N-API 介绍
 
@@ -347,8 +347,7 @@ import { constants } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const module = { exports: {} };
-dlopen(module, fileURLToPath(new URL('local.node', import.meta.url)),
-       constants.dlopen.RTLD_NOW);
+dlopen(module, fileURLToPath(new URL('local.node', import.meta.url)), constants.dlopen.RTLD_NOW);
 module.exports.foo();
 ```
 
@@ -388,7 +387,26 @@ node 的扩展模块，后缀名是 `.node`，这个只是为了便于，node �
 
 node 完成的加载流程如下：
 
-`require("xxx.node")` => `process.dlopen` => `C++层：DLOpen` => `系统层：dlopen`
+```mermaid
+graph TD;
+  a[require（'xxx.node'）];
+  a --> b[process.dlopen];
+  b --> c[C++层：DLOpen];
+  c --> d[libuv层：uv_dlopen]
+  d -- unix --> e[系统层：dlopen];
+  d -- win --> f[系统层：LoadLibraryExW];
+```
+> 源码链接： 
+>
+> > require：[lib/internal/modules/cjs/loader.js](https://github.com/nodejs/node/blob/v20.13.1/lib/internal/modules/cjs/loader.js#L1446,L1455)
+> >
+> > process.dlopen：[src/node_process_methods.cc](https://github.com/nodejs/node/blob/v20.13.1/src/node_process_methods.cc#L659)
+> >
+> > uv_dlopen：[src/node_binding.cc](https://github.com/nodejs/node/blob/v20.13.1/src/node_binding.cc#L427)
+> >
+> > dlopen：[deps/uv/src/unix/dl.c](https://github.com/nodejs/node/blob/v20.13.1/deps/uv/src/unix/dl.c#L36)
+> >
+> > LoadLibraryExW：[deps/uv/src/win/dl.c](https://github.com/nodejs/node/blob/v20.13.1/deps/uv/src/win/dl.c#L43)
 
 ## 5.nodejs addon 模块的所有编写方式
 
