@@ -1,2 +1,3 @@
 - [Docker](/docker/README.md)
   - [cli 常用操作](/docker/docker-cli.md)
+  - [proxy 配置](/docker/docker-proxy.md)
