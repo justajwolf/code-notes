@@ -4,6 +4,29 @@ deployNginx() {
     docker compose -f docker-compose.yaml up nginx -d
 }
 
+deployZeroClaw() {
+    pushd docker/claws || return 1
+    trap 'popd' EXIT
+    
+    local GID="$(id -g)"
+    export GID
+    export UID
+
+    mkdir -p ~/.zeroclaw/workspace
+
+    docker compose -f docker-compose.yaml up zeroclaw -d --wait
+    
+    cmd="chown $UID:$GID /zeroclaw-data/.zeroclaw/config.toml"
+    docker exec -u root zeroclaw $cmd
+
+    configPath=~/.zeroclaw/config.toml
+    sed -i 's/host = "127\.0\.0\.1"/host = "0.0.0.0"/' $configPath
+    sed -i 's/allow_public_bind\s*=\s*false/allow_public_bind = true/' $configPath
+    sed -i 's/require_pairing\s*=\s*true/require_pairing = false/' $configPath
+
+    docker restart zeroclaw
+}
+
 main() {
     # 检查是否传递了函数名
     if [ $# -lt 1 ]; then

@@ -1,12 +1,17 @@
 networks:
     default:
+        external: true
         driver: bridge
         name: basic
 services:
     zeroclaw:
         container_name: zeroclaw
-        image: ghcr.io/zeroclaw-labs/zeroclaw:latest
+        image: ghcr.io/zeroclaw-labs/zeroclaw:debian
         restart: always
+        user: "${UID}:${GID}"
+        volumes:
+            - ~/.zeroclaw/:/zeroclaw-data/.zeroclaw/
+            - ~/.zeroclaw/workspace/:/zeroclaw-data/workspace/
         ports:
             - 42617:42617
         networks:
