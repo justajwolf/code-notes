@@ -1,0 +1,13 @@
+networks:
+    default:
+        driver: bridge
+        name: basic
+services:
+    zeroclaw:
+        container_name: zeroclaw
+        image: ghcr.io/zeroclaw-labs/zeroclaw:latest
+        restart: always
+        ports:
+            - 42617:42617
+        networks:
+            - default
