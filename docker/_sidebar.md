@@ -1,3 +1,4 @@
 - [Docker](/docker/README.md)
-  - [cli 常用操作](/docker/docker-cli.md)
-  - [proxy 配置](/docker/docker-proxy.md)
+  - [cli 常用操作](/docker/notes/docker-cli.md)
+  - [proxy 配置](/docker/notes/docker-proxy.md)
+  - [配置容器内置，宿主机域名](/docker/notes/docker-host-domain.md)
