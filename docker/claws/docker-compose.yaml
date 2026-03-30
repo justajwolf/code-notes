@@ -1,18 +1,37 @@
 networks:
-    default:
-        external: true
-        driver: bridge
-        name: basic
+  default:
+    external: true
+    driver: bridge
+    name: basic
 services:
-    zeroclaw:
-        container_name: zeroclaw
-        image: ghcr.io/zeroclaw-labs/zeroclaw:debian
-        restart: always
-        user: "${UID}:${GID}"
-        volumes:
-            - ~/.zeroclaw/:/zeroclaw-data/.zeroclaw/
-            - ~/.zeroclaw/workspace/:/zeroclaw-data/workspace/
-        ports:
-            - 42617:42617
-        networks:
-            - default
+  zeroclaw:
+    container_name: zeroclaw
+    image: ghcr.io/zeroclaw-labs/zeroclaw:debian
+    restart: always
+    user: "${UID}:${GID}"
+    volumes:
+      - ~/.zeroclaw:/zeroclaw-data/.zeroclaw
+      - ~/.zeroclaw/workspace:/zeroclaw-data/workspace
+    ports:
+      - 42617:42617
+    networks:
+      - default
+  openclaw:
+    container_name: openclaw
+    image: ghcr.io/openclaw/openclaw:latest
+    restart: always
+    ports:
+      - 18789:18789
+    volumes:
+      - ~/.openclaw:/home/node/.openclaw
+      - ~/.openclaw/workspace:/home/node/.openclaw/workspace
+    environment:
+      - NODE_ENV=production
+      - OPENCLAW_GATEWAY_BIND=lan
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+    healthcheck:
+      test: [ "CMD", "curl", "-fsS", "http://localhost:18789/healthz" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
