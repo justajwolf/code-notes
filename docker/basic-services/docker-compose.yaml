@@ -95,3 +95,23 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
             - default
+    # 内网穿透，https 隧道转发到本机端口
+    # 使用：在 .env 中配置 NGROK_AUTHTOKEN、NGROK_DOMAIN、NGROK_TARGET 后
+    # docker compose --profile ngrok up -d
+    ngrok:
+        container_name: ngrok
+        image: ngrok/ngrok:latest
+        restart: always
+        # 使用 host 网络，NGROK_TARGET 直接填本机端口
+        network_mode: host
+        environment:
+            - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+        # NGROK_DOMAIN 为在 ngrok 控制台创建的固定域名
+        command: ["http", "--url=${NGROK_DOMAIN}", "${NGROK_TARGET:-8080}"]
+        logging:
+            driver: json-file
+            options:
+                max-size: 1M
+                max-file: "2"
+        profiles:
+            - ngrok
