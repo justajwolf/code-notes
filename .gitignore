@@ -1,19 +1,58 @@
-/**/*/node_modules
-/**/*/.DS_Store
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editor / IDE ----
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+# ---- Node ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.pnpm-store/
+.pnp.*
+/**/*/package-lock.json
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ---- 日志与临时文件 ----
+*.log
+.tmp/
+tmp/
+*.pid
+*.seed
+
+# ---- 构建与覆盖率 ----
+coverage/
+.nyc_output/
+
+# ---- 环境变量 ----
+*.env
+!.example.env
+
+# ---- 项目专属 ----
 /docker/basic-services/mongo/db/*
 /docker/basic-services/mongo/logs/*
 /docker/basic-services/redis/data/*
-/elastic-stack/filebeat/logs/*
-!/elastic-stack/filebeat/logs/README.md
+/docker/elastic-stack/filebeat/logs/*
+!/docker/elastic-stack/filebeat/logs/README.md
 !/docker/basic-services/mongo/logs/README.md
 !/docker/basic-services/mongo/db/README.md
-/**/*/package-lock.json
-/node_modules
 /lang/cpp/
 !/lang/cpp/**/*.cpp
 !/lang/cpp/**/*.md
 !/lang/cpp/**/*.txt
 /go.mod
-
-*.env
-!.example.env
